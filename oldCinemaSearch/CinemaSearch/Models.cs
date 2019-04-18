@@ -10,11 +10,9 @@ namespace CinemaSearch
     {
         int MovieID;
         string Title;
-        bool? IsAdult;
-        int? Runtime;
-        int? ReleaseYear;
-        Genre Genre;
-        Director Director;
+        bool IsAdult;
+        int Runtime;
+        int ReleaseYear;
     }
     class MovieLanguage
     {
@@ -36,12 +34,13 @@ namespace CinemaSearch
         int RegionID;
         string Name;
     }
-
+    class MovieGenre
+    {
+        int MovieID;
+        int GenreID;
+    }
     class Genre
     {
-        private Dictionary<string, Genre> _theDict = new Dictionary<string, Genre>();
-        // using dict to make sure we dont create duplicate genres
-        // need to override constructor
         int GenreID;
         string Name;
     }
@@ -49,7 +48,7 @@ namespace CinemaSearch
     {
         int PersonID;
         string Name;
-        int? BirthYear;
+        int BirthYear;
     }
     class Actor
     {

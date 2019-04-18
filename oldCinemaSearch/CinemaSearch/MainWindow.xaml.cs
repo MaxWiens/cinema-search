@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using f = System.Windows.Forms;
 
 namespace CinemaSearch
 {
@@ -23,6 +24,7 @@ namespace CinemaSearch
         public MainWindow()
         {
             InitializeComponent();
+            f.Application.Run(new MovieListView());
         }
     }
 }
