@@ -1,0 +1,9 @@
+U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\CinemaSearch.exe.config
+U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\CinemaSearch.exe
+U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\CinemaSearch.pdb
+U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csprojAssemblyReference.cache
+U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.Properties.Resources.resources
+U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.GenerateResource.cache
+U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.CoreCompileInputs.cache
+U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.exe
+U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.pdb
