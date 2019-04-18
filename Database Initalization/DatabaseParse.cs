@@ -5,14 +5,14 @@ private static string[,] ParseFile(string path) {
 	
 	// Establish boundries of return array.
 	int rowCount = rows.Length;
-	int fieldCount = (rows[0].Split(',')).Count;
+	int fieldCount = (rows[0].Split('\t')).Count;
 	
 	// Create return array.
 	string[,] returnArr = new string[rowCount,fieldCount];
 	
 	// Iterate through rows from file and split at commas.
 	for(int rowIndex=0; rowIndex<rowCount; rowIndex++) {
-		string[] fields = rows[rowIndex].Split(',');
+		string[] fields = rows[rowIndex].Split('\t');
 		
 		// Insert the values from the fields in each row into return array.
 		for(int fieldIndex=0; fieldIndex<fieldCount; fieldIndex++) {
