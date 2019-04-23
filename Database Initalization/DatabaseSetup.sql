@@ -1,71 +1,96 @@
-DROP TABLE IF EXISTS Movie.MovieStudio;
-DROP TABLE IF EXISTS Movie.Movies;
-DROP TABLE IF EXISTS Movie.Genre;
-DROP TABLE IF EXISTS Movie.MovieGenre;
-DROP TABLE IF EXISTS Movie.Director;
-DROP TABLE IF EXISTS Movie.Actor;
-DROP TABLE IF EXISTS Movie.Person;
-DROP TABLE IF EXISTS Movie.Studio;
-DROP TABLE IF EXISTS Movie.MPAARating;
+-- Uncomment and run once to create database schema.
+-- CREATE SCHEMA Movie;
 
--- input: title,rating,runtime,release,desc,country,revenue (once per movie) --
+IF OBJECT_ID('Movie.Movies', 'U') IS NOT NULL 
+  DROP TABLE Movie.Movies;
+
+IF OBJECT_ID('Movie.Person', 'U') IS NOT NULL 
+  DROP TABLE Movie.Person;
+  
+IF OBJECT_ID('Movie.Genre', 'U') IS NOT NULL 
+  DROP TABLE Movie.Genre;
+  
+IF OBJECT_ID('Movie.MovieGenre', 'U') IS NOT NULL 
+  DROP TABLE Movie.MovieGenre;
+  
+IF OBJECT_ID('Movie.Director', 'U') IS NOT NULL 
+  DROP TABLE Movie.Director;
+  
+IF OBJECT_ID('Movie.Actor', 'U') IS NOT NULL 
+  DROP TABLE Movie.Actor;
+  
+IF OBJECT_ID('Movie.MovieLanguage', 'U') IS NOT NULL 
+  DROP TABLE Movie.MovieLanguage;
+  
+IF OBJECT_ID('Movie.Language', 'U') IS NOT NULL 
+  DROP TABLE Movie.Language;
+  
+IF OBJECT_ID('Movie.MovieRegion', 'U') IS NOT NULL 
+  DROP TABLE Movie.MovieRegion;
+  
+IF OBJECT_ID('Movie.Rating', 'U') IS NOT NULL 
+  DROP TABLE Movie.Rating;
+  
+IF OBJECT_ID('Movie.Region', 'U') IS NOT NULL 
+  DROP TABLE Movie.Region;
+  
+
 CREATE TABLE Movie.Movies (
-	MovieID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	Title NVARCHAR(64) NOT NULL,
-	MPAARatingID TINYINT,
+	MovieID INT NOT NULL PRIMARY KEY,
+	Title NVARCHAR(512) NOT NULL,
+	IsAdult TINYINT,
 	Runtime INT,
-	ReleaseDate DATE,
-	Description VARCHAR(512),
-	Country NVARCHAR(8),
-	Revenue MONEY
+	ReleaseYear INT
 );
 
--- input: FirstName,LastName (once per person) --
 CREATE TABLE Movie.Person (
-	PersonID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	FirstName NVARCHAR(64),
-	LastName NVARCHAR(64)
+	PersonID INT NOT NULL PRIMARY KEY,
+	Name NVARCHAR(128),
+	BirthYear INT
 );
 
--- input: GenreName (once per genre) --
 CREATE TABLE Movie.Genre (
-	GenreID TINYINT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	GenreID INT NOT NULL PRIMARY KEY,
 	GenreName NVARCHAR(32) NOT NULL UNIQUE
 );
 
--- input: genreID (one per movie, in same order as input for Movie.Movies table) --
 CREATE TABLE Movie.MovieGenre (
-	MovieID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	GenreID TINYINT NOT NULL PRIMARY KEY
+	MovieID INT NOT NULL PRIMARY KEY,
+	GenreName NVARCHAR(64)
 );
 
--- input: PersonID (one per movie, in same order as input for Movie.Movies table) --
+CREATE TABLE Movie.Rating (
+	MovieID INT NOT NULL PRIMARY KEY,
+	Rating NVARCHAR(8) NOT NULL
+);
+
 CREATE TABLE Movie.Director (
-	MovieID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	MovieID INT NOT NULL,
 	PersonID INT NOT NULL PRIMARY KEY
 );
 
--- input: MovieID,personID,CharacterName --
 CREATE TABLE Movie.Actor (
+	MovieID INT NOT NULL,
+	PersonID INT NOT NULL,
+	CharacterName NVARCHAR(256) NOT NULL
+);
+
+CREATE TABLE Movie.MovieRegion (
 	MovieID INT NOT NULL PRIMARY KEY,
-	PersonID INT NOT NULL PRIMARY KEY,
-	CharacterName NVARCHAR(64) NOT NULL PRIMARY KEY
+	RegionName NVARCHAR(64) NOT NULL
 );
 
--- input: StudioName (once per studio) --
-CREATE TABLE Movie.Studio (
-	StudioID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	StudioName NVARCHAR(64) NOT NULL UNIQUE
+CREATE TABLE Movie.MovieLanguage (
+	MovieID INT NOT NULL PRIMARY KEY,
+	LanguageName NVARCHAR(12) NOT NULL
 );
 
--- input: StudioID (one per movie, in same order as input for Movie.Movies table) --
-CREATE TABLE Movie.MovieStudio (
-	MovieID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	StudioID INT NOT NULL
+CREATE TABLE Movie.Language (
+	LanguageID INT NOT NULL PRIMARY KEY,
+	LanguageName NVARCHAR(8) NOT NULL UNIQUE
 );
 
--- input: RatingName (once per MPAA rating) --
-CREATE TABLE Movie.MPAARating (
-	MPAARatingID TINYINT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	RatingName NVARCHAR(8) NOT NULL UNIQUE
+CREATE TABLE Movie.Region (
+	RegionID INT NOT NULL PRIMARY KEY,
+	RegionName NVARCHAR(64) NOT NULL UNIQUE
 );
