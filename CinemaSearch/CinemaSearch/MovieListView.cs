@@ -16,5 +16,19 @@ namespace CinemaSearch
         {
             InitializeComponent();
         }
+
+        private void uxSearchButtonGo_Click(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b == null) throw new Exception("Object was not of type button");
+            string userSearchText = b.Text;
+            // run query looking for something with
+            var queryArgs = (title: userSearchText,);
+        }
+
+        private void uxMovieButtonMoreInfo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
