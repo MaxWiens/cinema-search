@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaSearch", "CinemaSearch\CinemaSearch.csproj", "{30D1FE51-B6CD-4EFE-A593-8887C227574D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLQueries", "SQLQueries", "{863586FB-ACE4-4822-B7C8-DBEEC6425F41}"
+	ProjectSection(SolutionItems) = preProject
+		SortByTitle.sql = SortByTitle.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -19,11 +19,13 @@ namespace CinemaSearch
 
         private void uxSearchButtonGo_Click(object sender, EventArgs e)
         {
-            Button b = sender as Button;
-            if (b == null) throw new Exception("Object was not of type button");
-            string userSearchText = b.Text;
+
+            string userSearchText = uxSearchTextLabel.Text;
             // run query looking for something with
-            var queryArgs = (title: userSearchText,);
+            Dictionary<string, string> queryDict = new Dictionary<string, string>();
+            queryDict.Add("title", userSearchText);
+            SqlQueryExecutor s = new SqlQueryExecutor("Data Source=mssql.cs.ksu.edu;Integrated Security=True");
+            s.SearchByTitle(title:"bee movie");
         }
 
         private void uxMovieButtonMoreInfo_Click(object sender, EventArgs e)
