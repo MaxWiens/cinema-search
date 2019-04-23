@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.IO;
 
 
 namespace CinemaSearch
@@ -15,11 +16,9 @@ namespace CinemaSearch
         public SqlQueryExecutor(string connectionString)
         {
             this.connectionString = connectionString;
+            //sourceFiles()
         }
         public IList SearchByTitle(string title)
-
-
-
         {
             title = '%' + title + '%';
 
@@ -27,7 +26,7 @@ namespace CinemaSearch
 
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SqlCommand command = new SqlCommand("SELECT MovieID, MovieTitle FROM Movie.SortByTitle('@MovieTitle')", connection);
                 command.Parameters.AddWithValue("@MovieTitle", title);
                 connection.Open();
                 SqlDataReader r = command.ExecuteReader();
@@ -42,15 +41,30 @@ namespace CinemaSearch
 
 
     }
+
     class NonQuery
     {
+        private List<string> functionFiles = new List<string> { "SortByTitle.sql" };
+        SqlConnection connection;
 
-        public NonQuery(string procString, string connectionString)
+        public NonQuery(string connectionString)
         {
+
             // this is used to create a stored procedure
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            connection =  new SqlConnection(connectionString);
+            
+                
+            
+        }
+        public bool PopulateFunctions()
+        {
+            string baseDir = Path.Combine (Directory.GetParent (Directory.GetParent (System.IO.Directory.GetCurrentDirectory().ToString()).ToString()).ToString(), "SQLQueries");// Get base directory of where the sql query files are
+
+            foreach (string filename in functionFiles)
             {
-                using (SqlCommand command = new SqlCommand(procString, connection))
+                string fullFilePath = Path.Combine(baseDir, filename);
+                string contents = File.ReadAllText(fullFilePath);
+                using (SqlCommand command = new SqlCommand(contents, connection))
                 {
                     connection.Open();
                     command.CommandType = System.Data.CommandType.Text;
@@ -58,6 +72,7 @@ namespace CinemaSearch
                     connection.Close();
                 }
             }
+            return true; 
         }
     }
 }
