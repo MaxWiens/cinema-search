@@ -31,25 +31,29 @@ CREATE TABLE Movie.Person (
 CREATE TABLE Movie.Genre (
 	GenreID TINYINT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	GenreName NVARCHAR(32) NOT NULL UNIQUE
+	
 );
 
 -- input: genreID (one per movie, in same order as input for Movie.Movies table) --
 CREATE TABLE Movie.MovieGenre (
-	MovieID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	GenreID TINYINT NOT NULL PRIMARY KEY
+	MovieID INT NOT NULL IDENTITY(1, 1) ,
+	GenreID TINYINT NOT NULL 
+	PRIMARY KEY(MovieId, GenreID)
 );
 
 -- input: PersonID (one per movie, in same order as input for Movie.Movies table) --
 CREATE TABLE Movie.Director (
-	MovieID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	PersonID INT NOT NULL PRIMARY KEY
+	MovieID INT NOT NULL IDENTITY(1, 1),
+	PersonID INT NOT NULL,
+	PRIMARY KEY(MovieID, PersonID)
 );
 
 -- input: MovieID,personID,CharacterName --
 CREATE TABLE Movie.Actor (
-	MovieID INT NOT NULL PRIMARY KEY,
-	PersonID INT NOT NULL PRIMARY KEY,
-	CharacterName NVARCHAR(64) NOT NULL PRIMARY KEY
+	MovieID INT NOT NULL,
+	PersonID INT NOT NULL,
+	CharacterName NVARCHAR(64) NOT NULL
+	PRIMARY KEY(MovieID, PersonID, CharacterName)
 );
 
 -- input: StudioName (once per studio) --
