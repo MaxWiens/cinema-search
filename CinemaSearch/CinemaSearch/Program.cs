@@ -17,7 +17,7 @@ namespace CinemaSearch
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string connectionString = "Data Source=mssql.cs.ksu.edu;Integrated Security=True";
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True";
             NonQuery nq = new NonQuery(connectionString:connectionString);
             nq.PopulateFunctions();
             SqlQueryExecutor s = new SqlQueryExecutor(connectionString: connectionString);

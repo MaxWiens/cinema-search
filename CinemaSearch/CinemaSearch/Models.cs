@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CinemaSearch
+namespace CinemaSearch.Models
 {
     class Movie
     {
@@ -13,8 +13,17 @@ namespace CinemaSearch
         bool? IsAdult;
         int? Runtime;
         int? ReleaseYear;
-        Genre Genre;
-        Director Director;
+        //Genre Genre;
+        //Director Director;
+
+        public Movie (int mid, string t, bool? ia, int? rt, int? ry)
+        {
+            int MovieID = mid;
+            string Title = t;
+            bool? IsAdult = ia;
+            int? Runtime = rt;
+            int? ReleaseYear = ry;
+        }
     }
     class MovieLanguage
     {
