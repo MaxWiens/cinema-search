@@ -1,5 +1,5 @@
 *exe
 *.pdb
 db.lock
-obj/*
-bin/*
+obj/
+bin/
