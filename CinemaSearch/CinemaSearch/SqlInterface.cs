@@ -43,6 +43,7 @@ namespace CinemaSearch
                     }
                 }
 
+
                 connection.ChangeDatabase("CinemaSearch");
 
 
