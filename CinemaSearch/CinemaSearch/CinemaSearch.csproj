@@ -122,6 +122,10 @@
     <Content Include="Sql\Data\CinemaSearch.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sql\Data\CinemaSearch_log.ldf">
+      <DependentUpon>CinemaSearch.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sql\Queries\SortByTitle.sql" />
     <Content Include="Sql\CreateDatabase.sql" />
     <Content Include="Sql\Procedures\Movie.CreateMovie.sql" />
