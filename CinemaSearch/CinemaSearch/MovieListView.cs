@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,13 +29,16 @@ namespace CinemaSearch
         private void uxSearchButtonGo_Click(object sender, EventArgs e)
         {
 
-            string userSearchText = uxSearchTextLabel.Text;
-            // run query looking for something with
-            Dictionary<string, string> queryDict = new Dictionary<string, string>();
-            queryDict.Add("title", userSearchText);
+            string searchText = uxMovieSearchbox.Text;
 
-            _sqlinterface.SearchByTitle(title:"bee movie");
+            if (searchText != "")
+            {
+                Dictionary<string, string> queryDict = new Dictionary<string, string>();
+                queryDict.Add("title", searchText);
 
+                ArrayList results = _sqlinterface.SearchByTitle(searchText);
+                uxMovieListBox.DataSource = results;
+            }
         }
 
         private void uxMovieButtonMoreInfo_Click(object sender, EventArgs e)

@@ -40,19 +40,42 @@ namespace CinemaSearch
                         s.AttachDatabase("CinemaSearch", new StringCollection { _sqlDir + "Data\\CinemaSearch.mdf" });
                     }
                 }
+
                 connection.ChangeDatabase("CinemaSearch");
+                
+                /*
+                string[] functionFiles = {
+                    "Queries\\SortByTitle.sql"
+                };
+
+                foreach (string filename in functionFiles)
+                {
+                    string contents = File.ReadAllText(_sqlDir + filename);
+                    using (SqlCommand command = new SqlCommand(contents, connection))
+                    {
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.ExecuteNonQuery();
+                    }
+                }
+                */
             }
         }
 
-        public IList SearchByTitle(string title)
+        public ArrayList SearchByTitle(string title)
         {
             ArrayList results = new ArrayList();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT MovieID, MovieTitle FROM Movie.SortByTitle('@MovieTitle')", connection);
-                command.Parameters.AddWithValue("@MovieTitle", '%' + title + '%');
+
                 connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.SortByTitle", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("MovieTitle", '%' + title + '%');
+                
                 SqlDataReader r = command.ExecuteReader();
                 while (r.Read())
                     results.Add(r["movieTitle"]);
