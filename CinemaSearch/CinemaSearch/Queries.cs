@@ -18,26 +18,7 @@ namespace CinemaSearch
             this.connectionString = connectionString;
             //sourceFiles()
         }
-        public IList SearchByTitle(string title)
-        {
-            title = '%' + title + '%';
-
-            ArrayList results = new ArrayList();
-
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
-            {
-                SqlCommand command = new SqlCommand("SELECT MovieID, MovieTitle FROM Movie.SortByTitle('@MovieTitle')", connection);
-                command.Parameters.AddWithValue("@MovieTitle", title);
-                connection.Open();
-                SqlDataReader r = command.ExecuteReader();
-                while (r.Read())
-                {
-                    results.Add(r["movieTitle"]);
-                }
-                connection.Close();
-            };
-            return results;
-        }
+        
 
 
     }
@@ -56,6 +37,7 @@ namespace CinemaSearch
                 
             
         }
+
         public bool PopulateFunctions()
         {
             string baseDir = Path.Combine (Directory.GetParent (Directory.GetParent (System.IO.Directory.GetCurrentDirectory().ToString()).ToString()).ToString(), "SQLQueries");// Get base directory of where the sql query files are
@@ -74,5 +56,9 @@ namespace CinemaSearch
             }
             return true; 
         }
+
+
     }
 }
+
+

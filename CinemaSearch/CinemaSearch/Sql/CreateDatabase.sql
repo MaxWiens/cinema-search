@@ -1,2 +1,2 @@
-﻿IF DB_ID(N'Movie') IS NULL
-   CREATE DATABASE [Movie];
+﻿IF DB_ID(N'CinemaSearch') IS NULL
+   CREATE DATABASE [CinemaSearch];
