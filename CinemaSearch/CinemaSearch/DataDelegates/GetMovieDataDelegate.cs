@@ -3,7 +3,7 @@ using DataAccess;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace MovieData.DataDelegates
+namespace CinemaSearch.DataDelegates
 {
     internal class GetMovieDataDelegate : DataReaderDelegate<Movie>
     {
@@ -28,7 +28,8 @@ namespace MovieData.DataDelegates
             if (!reader.Read())
                 return null;
 
-            return new Movie (MovieID,
+            return new Movie (
+               reader.GetInt32(reader.GetOrdinal("MovieID")),
                reader.GetString(reader.GetOrdinal("Title")),
                reader.GetBoolean(reader.GetOrdinal("IsAdult")),
                reader.GetInt32(reader.GetOrdinal("Runtime")),

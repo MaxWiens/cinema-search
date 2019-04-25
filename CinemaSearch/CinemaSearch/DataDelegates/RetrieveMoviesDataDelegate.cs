@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace CinemaSearch.DataDelegates
 {
-   public class RetrieveMoviesDataDelegate : DataReaderDelegate<IReadOnlyList<Movie>>
+   internal class RetrieveMoviesDataDelegate : DataReaderDelegate<IReadOnlyList<Movie>>
    {
       public RetrieveMoviesDataDelegate()
          : base("Movie.RetrieveMovies")

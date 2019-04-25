@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.IO;
 
-
+/*
 namespace CinemaSearch
 {
     class SqlQueryExecutor
@@ -76,3 +76,4 @@ namespace CinemaSearch
         }
     }
 }
+*/

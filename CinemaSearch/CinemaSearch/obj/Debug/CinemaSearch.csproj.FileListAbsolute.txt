@@ -7,3 +7,13 @@ U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.
 U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.CoreCompileInputs.cache
 U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.exe
 U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.pdb
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\CinemaSearch.exe.config
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\CinemaSearch.exe
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\CinemaSearch.pdb
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csprojAssemblyReference.cache
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.MovieListView.resources
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.Properties.Resources.resources
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.GenerateResource.cache
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.CoreCompileInputs.cache
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.exe
+C:\Users\vweav\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.pdb
