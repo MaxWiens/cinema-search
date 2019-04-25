@@ -12,9 +12,17 @@ namespace CinemaSearch
 {
     public partial class MovieListView : Form
     {
+
+        private SqlInterface _sqlinterface;
+
         public MovieListView()
         {
             InitializeComponent();
+
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True";
+
+            _sqlinterface = new SqlInterface(connectionString);
+            _sqlinterface.InitalizeDatabase();
         }
 
         private void uxSearchButtonGo_Click(object sender, EventArgs e)
@@ -24,13 +32,14 @@ namespace CinemaSearch
             // run query looking for something with
             Dictionary<string, string> queryDict = new Dictionary<string, string>();
             queryDict.Add("title", userSearchText);
-            SqlQueryExecutor s = new SqlQueryExecutor("Data Source=mssql.cs.ksu.edu;Integrated Security=True");
-            s.SearchByTitle(title:"bee movie");
+
+            _sqlinterface.SearchByTitle(title:"bee movie");
+
         }
 
         private void uxMovieButtonMoreInfo_Click(object sender, EventArgs e)
         {
-
+            _sqlinterface.SearchByTitle("Bee");
         }
     }
 }

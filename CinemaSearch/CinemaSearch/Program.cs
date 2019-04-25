@@ -17,11 +17,6 @@ namespace CinemaSearch
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True";
-            NonQuery nq = new NonQuery(connectionString:connectionString);
-            nq.PopulateFunctions();
-            SqlQueryExecutor s = new SqlQueryExecutor(connectionString: connectionString);
-            s.SearchByTitle("Bee");
             Application.Run(new MovieListView());
         }
     }

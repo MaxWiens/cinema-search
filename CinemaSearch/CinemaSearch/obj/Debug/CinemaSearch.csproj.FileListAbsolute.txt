@@ -7,3 +7,17 @@ U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.
 U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.CoreCompileInputs.cache
 U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.exe
 U:\CIS560\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.pdb
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\CinemaSearch.exe.config
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\CinemaSearch.exe
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\CinemaSearch.pdb
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csprojAssemblyReference.cache
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.MovieListView.resources
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.Properties.Resources.resources
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.GenerateResource.cache
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.CoreCompileInputs.cache
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.exe
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.pdb
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.csproj.CopyComplete
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debug\Sql\Data\CinemaSearch.mdf
