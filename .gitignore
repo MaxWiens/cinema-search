@@ -3,3 +3,5 @@
 db.lock
 obj/
 bin/
+*.ldf
+*.mdf
