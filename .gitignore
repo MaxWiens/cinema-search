@@ -1,5 +1,6 @@
-*exe
+*.exe
 *.pdb
+*.cache
 db.lock
 obj/
 bin/
