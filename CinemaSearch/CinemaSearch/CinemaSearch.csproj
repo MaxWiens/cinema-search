@@ -70,12 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataDelegate.cs" />
-    <Compile Include="DataDelegates\GetMovieDataDelegate.cs" />
-    <Compile Include="DataReaderDelegate.cs" />
-    <Compile Include="IDataDelegate.cs" />
-    <Compile Include="IDataReaderDelegate.cs" />
-    <Compile Include="INonQueryDataDelegate.cs" />
+    <Compile Include="Actor.cs" />
+    <Compile Include="AssociatedActor.cs" />
+    <Compile Include="AssociatedMovie.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="MovieListView.cs">
       <SubType>Form</SubType>
@@ -84,12 +81,10 @@
       <DependentUpon>MovieListView.cs</DependentUpon>
     </Compile>
     <Compile Include="Models.cs" />
-    <Compile Include="NonQueryDataDelegate.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries.cs" />
-    <Compile Include="SqlCommandExecutor.cs" />
     <Compile Include="SqlInterface.cs" />
     <EmbeddedResource Include="MovieListView.resx">
       <DependentUpon>MovieListView.cs</DependentUpon>
@@ -126,7 +121,7 @@
       <DependentUpon>CinemaSearch.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\Queries\SortByTitle.sql" />
+    <Content Include="Sql\Procedures\SortByTitle.sql" />
     <Content Include="Sql\CreateDatabase.sql" />
     <Content Include="Sql\Procedures\Movie.CreateMovie.sql" />
     <Content Include="Sql\Procedures\Movie.FindByPerson.sql" />
