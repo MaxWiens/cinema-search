@@ -1,4 +1,4 @@
-~~Movie.AssociatedMovies
+~~Movie.AssociatedMovies~~
 
 input: personID
 
@@ -7,7 +7,7 @@ output: movieID, movieTitle, [characterName|a character], isDirector
 
 ------------------------------------------------------------------------
 
-~~Movie.AssociatedPeople
+~~Movie.AssociatedPeople~~
 
 input: movieID
 
@@ -16,7 +16,7 @@ output: personID, personName, [characterName|a character]
 
 ------------------------------------------------------------------------
 
-~~Movie.GetDirector
+~~Movie.GetDirector~~
 
 input: movieID
 output: personID, personName
