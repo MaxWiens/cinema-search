@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace CinemaSearch
 {
-    public partial class MovieListView : Form
+    public partial class MovieViewer : Form
     {
         private SqlInterface _sqlinterface;
         private object _currentlyDisplayed;
 
-        public MovieListView()
+        public MovieViewer()
         {
             InitializeComponent();
 
@@ -34,13 +34,22 @@ namespace CinemaSearch
         {
             string title = uxMovieSearchbox.Text;
             string genre = uxGenreTextBox.Text;
-            string person = uxPersonTextBox.Text;
-            List<Movie> results = _sqlinterface.MovieSearch(title, genre, person);
-            uxMovieListBox.DataSource = results;
+            if (uxSearchForComboBox.SelectedIndex == 0) { // searching for movie
+                List<Movie> results = _sqlinterface.MovieSearch(title, genre);
+                uxMovieListBox.DataSource = results;
+            } else { // searching for person
+                List<Person> results = _sqlinterface.PersonSearch(title, genre);
+                uxMovieListBox.DataSource = results;
+            }
+            
         }
 
         private void DisplayPerson(Person person)
         {
+            uxResetInfo();
+            uxEditButton.Enabled = true;
+            uxDataListLabel.Text = "Associated Movies:";
+
             _currentlyDisplayed = person;
             uxDataName.Text = person.Name;
 
@@ -53,6 +62,10 @@ namespace CinemaSearch
 
         private void DisplayMovie(Movie movie)
         {
+            uxResetInfo();
+            uxEditButton.Enabled = true;
+            uxDataListLabel.Text = "Actors:";
+
             _currentlyDisplayed = movie;
             uxDataName.Text = movie.Title;
 
@@ -129,7 +142,7 @@ namespace CinemaSearch
 
         private void DisplayDirector(object sender, EventArgs e)
         {
-            MessageBox.Show("nice");
+            DisplayPerson(_sqlinterface.MoviePersonFromID(((Movie)_currentlyDisplayed).Director.ID));
         }
 
         private void uxResetInfo()
@@ -146,9 +159,10 @@ namespace CinemaSearch
 
         private void uxDisplayInfo(object sender, EventArgs e)
         {
-            
             if(sender.GetType() == typeof(ListBox))
             {
+                if (((ListBox)sender).DataSource == null) return;
+
                 object datasource = ((ListBox)sender).DataSource;
                 if (datasource.GetType() == typeof(List<Movie>))
                 {
@@ -156,15 +170,23 @@ namespace CinemaSearch
                     Movie movie = _sqlinterface.MovieSearchByMovieID(selectedMovie.MovieID);
                     DisplayMovie(movie);
                 }
+                else if (datasource.GetType() == typeof(List<Person>))
+                {
+                    Person selectedPerson = ((List<Person>)((ListBox)sender).DataSource)[((ListBox)sender).SelectedIndex];
+                    Person person = _sqlinterface.MoviePersonFromID(selectedPerson.PersonID);
+                    DisplayPerson(person);
+                }
                 else if (datasource.GetType() == typeof(List<AssociatedMovie>))
                 {
                     AssociatedMovie associatedMovie = ((List<AssociatedMovie>)((ListBox)sender).DataSource)[((ListBox)sender).SelectedIndex];
-                    
+                    Movie movie = _sqlinterface.MovieSearchByMovieID(associatedMovie.ID);
+                    DisplayMovie(movie);
                 }
                 else if (datasource.GetType() == typeof(List<AssociatedPerson>))
                 {
                     AssociatedPerson associatedPerson = ((List<AssociatedPerson>)((ListBox)sender).DataSource)[((ListBox)sender).SelectedIndex];
-
+                    Person person = _sqlinterface.MoviePersonFromID(associatedPerson.ID);
+                    DisplayPerson(person);
                 }
             }
         }
@@ -172,5 +194,17 @@ namespace CinemaSearch
         private void uxAddPerson(object sender, EventArgs e) => new PersonEditor(_sqlinterface).ShowDialog();
 
         private void uxAddMovie(object sender, EventArgs e) => new MovieEditor(_sqlinterface).ShowDialog();
+
+        private void uxEditButton_Click(object sender, EventArgs e)
+        {
+            if (_currentlyDisplayed.GetType() == typeof(Movie))
+            {
+                new MovieEditor(_sqlinterface, (Movie)_currentlyDisplayed).ShowDialog();
+            }
+            else if (_currentlyDisplayed.GetType() == typeof(Person))
+            {
+                new PersonEditor(_sqlinterface, (Person)_currentlyDisplayed).ShowDialog();
+            }
+        }
     }
 }

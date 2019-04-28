@@ -1,6 +1,6 @@
 ﻿namespace CinemaSearch
 {
-    partial class MovieListView
+    partial class MovieViewer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieListView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieViewer));
             this.uxMovieListBox = new System.Windows.Forms.ListBox();
             this.uxMovieSearchbox = new System.Windows.Forms.TextBox();
             this.uxSearchTextLabel = new System.Windows.Forms.Label();
             this.uxSearchButtonGo = new System.Windows.Forms.Button();
             this.uxDataName = new System.Windows.Forms.Label();
             this.uxDatalistBox = new System.Windows.Forms.ListBox();
-            this.uxPersonTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.uxData1 = new System.Windows.Forms.Label();
             this.uxData2 = new System.Windows.Forms.Label();
             this.uxData3 = new System.Windows.Forms.Label();
@@ -51,8 +49,9 @@
             this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uxData6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.uxEditButton = new System.Windows.Forms.Button();
             this.uxGenreTextBox = new System.Windows.Forms.TextBox();
+            this.uxDataListLabel = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,10 +59,10 @@
             // 
             this.uxMovieListBox.FormattingEnabled = true;
             this.uxMovieListBox.ItemHeight = 16;
-            this.uxMovieListBox.Location = new System.Drawing.Point(24, 153);
+            this.uxMovieListBox.Location = new System.Drawing.Point(24, 137);
             this.uxMovieListBox.Margin = new System.Windows.Forms.Padding(4);
             this.uxMovieListBox.Name = "uxMovieListBox";
-            this.uxMovieListBox.Size = new System.Drawing.Size(309, 372);
+            this.uxMovieListBox.Size = new System.Drawing.Size(309, 388);
             this.uxMovieListBox.TabIndex = 0;
             this.uxMovieListBox.TabStop = false;
             this.uxMovieListBox.SelectedIndexChanged += new System.EventHandler(this.uxDisplayInfo);
@@ -82,13 +81,13 @@
             this.uxSearchTextLabel.Location = new System.Drawing.Point(21, 34);
             this.uxSearchTextLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.uxSearchTextLabel.Name = "uxSearchTextLabel";
-            this.uxSearchTextLabel.Size = new System.Drawing.Size(39, 17);
+            this.uxSearchTextLabel.Size = new System.Drawing.Size(49, 17);
             this.uxSearchTextLabel.TabIndex = 2;
-            this.uxSearchTextLabel.Text = "Title:";
+            this.uxSearchTextLabel.Text = "Name:";
             // 
             // uxSearchButtonGo
             // 
-            this.uxSearchButtonGo.Location = new System.Drawing.Point(262, 117);
+            this.uxSearchButtonGo.Location = new System.Drawing.Point(262, 91);
             this.uxSearchButtonGo.Margin = new System.Windows.Forms.Padding(4);
             this.uxSearchButtonGo.Name = "uxSearchButtonGo";
             this.uxSearchButtonGo.Size = new System.Drawing.Size(69, 28);
@@ -116,14 +115,7 @@
             this.uxDatalistBox.Size = new System.Drawing.Size(493, 340);
             this.uxDatalistBox.TabIndex = 8;
             this.uxDatalistBox.TabStop = false;
-            // 
-            // uxPersonTextBox
-            // 
-            this.uxPersonTextBox.Location = new System.Drawing.Point(82, 91);
-            this.uxPersonTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.uxPersonTextBox.Name = "uxPersonTextBox";
-            this.uxPersonTextBox.Size = new System.Drawing.Size(249, 22);
-            this.uxPersonTextBox.TabIndex = 2;
+            this.uxDatalistBox.Click += new System.EventHandler(this.uxDisplayInfo);
             // 
             // label1
             // 
@@ -134,16 +126,6 @@
             this.label1.Size = new System.Drawing.Size(52, 17);
             this.label1.TabIndex = 11;
             this.label1.Text = "Genre:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 94);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 17);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Person:";
             // 
             // uxData1
             // 
@@ -187,7 +169,7 @@
             this.uxSearchForComboBox.Items.AddRange(new object[] {
             "Movie",
             "Person"});
-            this.uxSearchForComboBox.Location = new System.Drawing.Point(115, 120);
+            this.uxSearchForComboBox.Location = new System.Drawing.Point(115, 94);
             this.uxSearchForComboBox.Name = "uxSearchForComboBox";
             this.uxSearchForComboBox.Size = new System.Drawing.Size(140, 24);
             this.uxSearchForComboBox.TabIndex = 3;
@@ -195,7 +177,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 123);
+            this.label3.Location = new System.Drawing.Point(22, 97);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 17);
@@ -267,15 +249,17 @@
             this.uxData6.TabIndex = 22;
             this.uxData6.Text = "uxData6";
             // 
-            // button1
+            // uxEditButton
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(852, 502);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Edit";
-            this.button1.UseVisualStyleBackColor = true;
+            this.uxEditButton.Enabled = false;
+            this.uxEditButton.Location = new System.Drawing.Point(852, 502);
+            this.uxEditButton.Name = "uxEditButton";
+            this.uxEditButton.Size = new System.Drawing.Size(75, 23);
+            this.uxEditButton.TabIndex = 23;
+            this.uxEditButton.TabStop = false;
+            this.uxEditButton.Text = "Edit";
+            this.uxEditButton.UseVisualStyleBackColor = true;
+            this.uxEditButton.Click += new System.EventHandler(this.uxEditButton_Click);
             // 
             // uxGenreTextBox
             // 
@@ -284,13 +268,22 @@
             this.uxGenreTextBox.Size = new System.Drawing.Size(249, 22);
             this.uxGenreTextBox.TabIndex = 1;
             // 
-            // MovieListView
+            // uxDataListLabel
+            // 
+            this.uxDataListLabel.AutoSize = true;
+            this.uxDataListLabel.Location = new System.Drawing.Point(350, 165);
+            this.uxDataListLabel.Name = "uxDataListLabel";
+            this.uxDataListLabel.Size = new System.Drawing.Size(0, 17);
+            this.uxDataListLabel.TabIndex = 24;
+            // 
+            // MovieViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 554);
+            this.Controls.Add(this.uxDataListLabel);
             this.Controls.Add(this.uxGenreTextBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.uxEditButton);
             this.Controls.Add(this.uxData6);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.uxData5);
@@ -300,9 +293,7 @@
             this.Controls.Add(this.uxData3);
             this.Controls.Add(this.uxData2);
             this.Controls.Add(this.uxData1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.uxPersonTextBox);
             this.Controls.Add(this.uxDatalistBox);
             this.Controls.Add(this.uxDataName);
             this.Controls.Add(this.uxSearchButtonGo);
@@ -310,7 +301,7 @@
             this.Controls.Add(this.uxMovieSearchbox);
             this.Controls.Add(this.uxMovieListBox);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "MovieListView";
+            this.Name = "MovieViewer";
             this.Text = "MovieListView";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -327,9 +318,7 @@
         private System.Windows.Forms.Button uxSearchButtonGo;
         private System.Windows.Forms.Label uxDataName;
         private System.Windows.Forms.ListBox uxDatalistBox;
-        private System.Windows.Forms.TextBox uxPersonTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label uxData1;
         private System.Windows.Forms.Label uxData2;
         private System.Windows.Forms.Label uxData3;
@@ -343,7 +332,8 @@
         private System.Windows.Forms.Label uxData6;
         private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem movieToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button uxEditButton;
         private System.Windows.Forms.TextBox uxGenreTextBox;
+        private System.Windows.Forms.Label uxDataListLabel;
     }
 }

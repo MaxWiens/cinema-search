@@ -50,7 +50,9 @@ namespace CinemaSearch
                     @"Procedures\Movie.Search.sql",
                     @"Procedures\Movie.SearchByMovieID.sql",
                     @"Procedures\Movie.AssociatedPeople.sql",
-                    @"Procedures\Movie.GetDirector.sql"
+                    @"Procedures\Movie.AssociatedMovies.sql",
+                    @"Procedures\Movie.GetDirector.sql",
+                    @"Procedures\Movie.PersonFromID.sql"
                 };
 
                 foreach (string filename in functionFiles)
@@ -118,7 +120,7 @@ namespace CinemaSearch
                     string character = (string)values[2];
                     bool isDirector = (bool)values[3];
 
-                    results.Add(new AssociatedMovie(title, movieID, character, isDirector));
+                    results.Add(new AssociatedMovie(movieID, title, character, isDirector));
                 }
                 connection.Close();
             }
@@ -128,7 +130,7 @@ namespace CinemaSearch
 
 
 
-        public List<Movie> MovieSearch(string title, string genre, string person)
+        public List<Movie> MovieSearch(string name, string genre)
         {
             List<Movie> results = new List<Movie>();
 
@@ -140,9 +142,8 @@ namespace CinemaSearch
                 SqlCommand command = new SqlCommand("Movie.Search", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("MovieTitle", '%' + title + '%');
+                command.Parameters.AddWithValue("Name", '%' + name + '%');
                 command.Parameters.AddWithValue("MovieGenre", '%' + genre + '%');
-                command.Parameters.AddWithValue("PersonName", '%' + person + '%');
 
                 SqlDataReader r = command.ExecuteReader();
                 while (r.Read())
@@ -152,11 +153,39 @@ namespace CinemaSearch
 
                     results.Add(new Movie((int)values[0], (string)values[1]));
                 }
-
                 connection.Close();
             }
             return results;
         }
+
+        public List<Person> PersonSearch(string name, string genre)
+        {
+            List<Person> results = new List<Person>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.PersonSearch", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("Name", '%' + name + '%');
+                command.Parameters.AddWithValue("MovieGenre", '%' + genre + '%');;
+
+                SqlDataReader r = command.ExecuteReader();
+                while (r.Read())
+                {
+                    object[] values = new object[2];
+                    r.GetValues(values); //PersonID, Name, 
+
+                    results.Add(new Person((int)values[0], (string)values[1]));
+                }
+                connection.Close();
+            }
+            return results;
+        }
+
 
 
         public Movie MovieSearchByMovieID(int movieID)
@@ -248,13 +277,49 @@ namespace CinemaSearch
                 {
                     object[] values = new object[3];
                     r.GetValues(values); //id,name,charactername
-
-                    string characters = (Regex.Replace(Regex.Replace((string)values[2], "\",\"", "\", \""), "\\[|\\]", String.Empty));
+                    string characters;
+                    if (values[2] == System.DBNull.Value)
+                        characters = null;
+                    else
+                        characters = (Regex.Replace(Regex.Replace((string)values[2], "\",\"", "\", \""), "\\[|\\]", String.Empty));
                     results.Add(new AssociatedPerson((int)values[0], (string)values[1], characters, false));
                 }
             }
             return results;
         }
+
+        public List<AssociatedMovie> MovieAssociatedMovies(int personID)
+        {
+            List<AssociatedMovie> results = new List<AssociatedMovie>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.AssociatedMovies", connection);
+
+                command.Parameters.AddWithValue("personID", personID);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader r = command.ExecuteReader();
+                while (r.Read())
+                {
+                    object[] values = new object[4];
+                    r.GetValues(values); //MovieID, Title, Characters, IsDirector
+                    string characters;
+                    if (values[2] == System.DBNull.Value)
+                        characters = null;
+                    else
+                        characters = (Regex.Replace(Regex.Replace((string)values[2], "\",\"", "\", \""), "\\[|\\]", String.Empty));
+                    results.Add(new AssociatedMovie((int)values[0], (string)values[1], characters, (bool)values[3]));
+                }
+            }
+            return results;
+        }
+
+
+
 
         public AssociatedPerson MovieGetDirector(int movieID)
         {
@@ -274,6 +339,34 @@ namespace CinemaSearch
                     r.GetValues(values);
                     return new AssociatedPerson((int)values[0], (string)values[1], null, true);
                 }
+            }
+            return null;
+        }
+
+        public Person MoviePersonFromID(int personID)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.PersonFromID", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("PersonID", personID);
+
+                SqlDataReader r = command.ExecuteReader();
+                if (r.Read())
+                {
+                    object[] values = new object[3];
+                    r.GetValues(values); //P.PersonID, P.[Name], P.BirthYear
+
+                    int? birthYear = values[2] == System.DBNull.Value || (int)values[2] < 0 ? null : new int?((int)values[2]);
+
+                    List<AssociatedMovie> associatedMovies = MovieAssociatedMovies(personID);
+                    return new Person((int)values[0], (string)values[1], birthYear, associatedMovies);
+                }
+                connection.Close();
             }
             return null;
         }

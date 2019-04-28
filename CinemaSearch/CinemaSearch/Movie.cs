@@ -18,16 +18,10 @@ namespace CinemaSearch
         public List<AssociatedPerson> Actors { get; private set; }
         public string Genre { get; private set; }
 
-        /// <summary>
-        /// If all information is provided
-        /// </summary>
-        public bool Full  { get; private set; } 
-
         public Movie(int movieID, string title)
         {
             MovieID = movieID;
             Title = title;
-            Full = false;
         }
 
         public Movie(int movieID, string title, bool? isAdult, int? runTime, int? releaseYear, float? rating, AssociatedPerson director, List<AssociatedPerson> actors, string genre)
@@ -41,7 +35,6 @@ namespace CinemaSearch
             Director = director;
             Actors = actors;
             Genre = genre;
-            Full = true;
         }
 
         public override string ToString() => Title;

@@ -1,7 +1,6 @@
 ﻿CREATE OR ALTER PROCEDURE Movie.Search
-	@MovieTitle NVARCHAR(512),
-	@MovieGenre NVARCHAR(512),
-	@PersonName		NVARCHAR(512)
+	@Name NVARCHAR(512),
+	@MovieGenre NVARCHAR(512)
 AS
 SELECT M.MovieID, M.Title
 FROM Movie.Movies M
@@ -11,11 +10,11 @@ FROM Movie.Movies M
 	LEFT JOIN Movie.Person PA ON PA.PersonID = A.PersonID
 	LEFT JOIN Movie.Person PD ON PD.PersonID = D.PersonID
 WHERE 
-	M.Title LIKE @MovieTitle AND
 	MG.GenreName LIKE @MovieGenre AND 
 	(
-		PA.Name LIKE @PersonName OR 
-		A.CharacterName LIKE @PersonName OR 
-		PD.[Name] LIKE @PersonName
+		M.Title LIKE @Name OR
+		PA.Name LIKE @Name OR 
+		A.CharacterName LIKE @Name OR 
+		PD.Name LIKE @Name
 	)
 ;

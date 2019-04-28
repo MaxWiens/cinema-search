@@ -13,25 +13,20 @@ namespace CinemaSearch
     public partial class PersonEditor : Form
     {
         private SqlInterface _sqlInterface;
-        private int? _personID;
+        private Person _person;
 
-        public PersonEditor(SqlInterface sqlInterface, int? personID = null)
+        public PersonEditor(SqlInterface sqlInterface, Person person = null)
         {
             InitializeComponent();
             _sqlInterface = sqlInterface;
-            _personID = personID;
+            _person = person;
 
-            if (_personID == null)
+            if (_person != null)
             {
-                uxSubmitButton.Enabled = false;
-                uxNameTextBox.TextChanged += new EventHandler(uxNameTextBox_TextChanged);
+                uxNameTextBox.Text = person.Name;
+                uxBirthYear.Text = person.BirthYear == null ? string.Empty: person.BirthYear.Value.ToString();
+                uxSubmitButton.Enabled = true;
             }
-                
-        }
-
-        private void uxBirthYear_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
         }
 
         private void uxSubmitButtonClick(object sender, EventArgs e)
@@ -39,7 +34,7 @@ namespace CinemaSearch
             if (uxNameTextBox.Text != String.Empty)
             {
                 // adding new Person
-                if (_personID == null)
+                if (_person == null)
                 {
                     string name = uxNameTextBox.Text;
 
@@ -52,10 +47,20 @@ namespace CinemaSearch
                 else
                 {
                     string name = uxNameTextBox.Text == string.Empty ? null : uxNameTextBox.Text;
-                    
-                    int? birthYear = uxBirthYear.Text == string.Empty ? null : new int?(int.Parse(uxNameTextBox.Text));
+                    int? birthyear;
+                    if (uxBirthYear.Text == string.Empty)
+                        birthyear = null;
+                    else
+                    {
+                        if (!int.TryParse(uxBirthYear.Text, out int year))
+                        {
+                            MessageBox.Show("Failed to submit");
+                            return;
+                        }
+                        birthyear = new int?(year);
+                    }
 
-                    _sqlInterface.MovieUpdatePerson(_personID.Value, name, birthYear);
+                    //_sqlInterface.MovieUpdatePerson(_personID.Value, name, birthYear);
                 }
             }
         }
@@ -66,6 +71,11 @@ namespace CinemaSearch
                 uxSubmitButton.Enabled = false;
             else
                 uxSubmitButton.Enabled = true;
+        }
+
+        private void uxBirthYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
         }
     }
 }

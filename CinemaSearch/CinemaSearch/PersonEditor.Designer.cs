@@ -41,6 +41,7 @@
             this.uxNameTextBox.Name = "uxNameTextBox";
             this.uxNameTextBox.Size = new System.Drawing.Size(127, 22);
             this.uxNameTextBox.TabIndex = 0;
+            this.uxNameTextBox.TextChanged += new System.EventHandler(this.uxNameTextBox_TextChanged);
             // 
             // label1
             // 
@@ -53,6 +54,7 @@
             // 
             // uxSubmitButton
             // 
+            this.uxSubmitButton.Enabled = false;
             this.uxSubmitButton.Location = new System.Drawing.Point(199, 40);
             this.uxSubmitButton.Name = "uxSubmitButton";
             this.uxSubmitButton.Size = new System.Drawing.Size(75, 23);

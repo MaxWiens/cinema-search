@@ -17,7 +17,7 @@ namespace CinemaSearch
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MovieListView());
+            Application.Run(new MovieViewer());
         }
     }
 }

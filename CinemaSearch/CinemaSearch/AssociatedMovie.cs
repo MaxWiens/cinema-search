@@ -13,7 +13,7 @@ namespace CinemaSearch
         public string Character { get; private set; }
         public bool IsDirector { get; private set; }
 
-        public AssociatedMovie(string title, int id, string character, bool isDirector)
+        public AssociatedMovie(int id, string title, string character, bool isDirector)
         {
             Title = title;
             ID = id;
@@ -21,6 +21,16 @@ namespace CinemaSearch
             IsDirector = isDirector;
         }
 
-        public override string ToString() => Title;
+        public override string ToString()
+        {
+            if (IsDirector && Character != null)
+                return $"Director and Actor in {Title} as {Character}";
+            else if (IsDirector)
+                return $"Director of {Title}";
+            else if (Character != null)
+                return $"Actor in {Title} as {Character}";
+            else
+                return "Actor in" + Title;
+        }
     }
 }
