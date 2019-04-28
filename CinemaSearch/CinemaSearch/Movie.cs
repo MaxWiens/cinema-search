@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CinemaSearch
 {
-    class Movie
+    public class Movie
     {
         public int MovieID { get; private set; }
         public string Title { get; private set; }
@@ -14,17 +14,34 @@ namespace CinemaSearch
         public int? Runtime { get; private set; }
         public int? ReleaseYear { get; private set; }
         public float? Rating { get; private set; }
-        public Person Director { get; private set; }
-        public List<AssociatedActor> Actors { get; private set; }
-        //Genre Genre;
+        public AssociatedPerson Director { get; private set; }
+        public List<AssociatedPerson> Actors { get; private set; }
+        public string Genre { get; private set; }
 
-        public Movie(int movieID, string title, bool? isAdult, int? runTime, int? releaseYear, float? Rating)
+        /// <summary>
+        /// If all information is provided
+        /// </summary>
+        public bool Full  { get; private set; } 
+
+        public Movie(int movieID, string title)
+        {
+            MovieID = movieID;
+            Title = title;
+            Full = false;
+        }
+
+        public Movie(int movieID, string title, bool? isAdult, int? runTime, int? releaseYear, float? rating, AssociatedPerson director, List<AssociatedPerson> actors, string genre)
         {
             MovieID = movieID;
             Title = title;
             IsAdult = isAdult;
             Runtime = runTime;
             ReleaseYear = releaseYear;
+            Rating = rating;
+            Director = director;
+            Actors = actors;
+            Genre = genre;
+            Full = true;
         }
 
         public override string ToString() => Title;

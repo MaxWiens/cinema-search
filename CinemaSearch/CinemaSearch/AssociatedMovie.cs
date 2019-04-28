@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace CinemaSearch
 {
-    class AssociatedMovie
+    public class AssociatedMovie
     {
         public string Title { get; private set; }
         public int ID { get; private set; }
+        public string Character { get; private set; }
+        public bool IsDirector { get; private set; }
 
-        public AssociatedMovie(string title, int id)
+        public AssociatedMovie(string title, int id, string character, bool isDirector)
         {
-            Title = Title;
+            Title = title;
             ID = id;
+            Character = character;
+            IsDirector = isDirector;
         }
 
         public override string ToString() => Title;
