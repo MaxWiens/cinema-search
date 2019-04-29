@@ -15,15 +15,16 @@ namespace CinemaSearch
     {
         private SqlInterface _sqlinterface;
         private object _currentlyDisplayed;
+        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True";
 
         public MovieViewer()
         {
             InitializeComponent();
 
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True";
+            
 
             _sqlinterface = new SqlInterface(connectionString);
-            _sqlinterface.InitalizeDatabase();
+            DatabaseInit.InitalizeDatabase(connectionString);
             uxResetInfo();
             uxSearchForComboBox.SelectedIndex = 0;
             uxSearchForComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -206,6 +207,31 @@ namespace CinemaSearch
             {
                 new PersonEditor(_sqlinterface, (Person)_currentlyDisplayed).ShowDialog();
             }
+        }
+        private void populateDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = uxBrowseForDataDialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                try
+                {
+                    string[] files = Directory.GetFiles(uxBrowseForDataDialog.SelectedPath, "*.tsv");
+                    if(files.Length < 8)
+                    {
+                        MessageBox.Show("Invalid path. Some data files (.tsv) weren't found.");
+                    } else
+                    {
+                        Cursor.Current = Cursors.WaitCursor;
+                        DatabaseInit.CreateTables(connectionString);
+                        DatabaseInit.PopulateDatabase(connectionString, uxBrowseForDataDialog.SelectedPath);
+                        Cursor.Current = Cursors.Default;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            } 
         }
     }
 }
