@@ -14,7 +14,7 @@ namespace CinemaSearch
         public int? Runtime { get; private set; }
         public int? ReleaseYear { get; private set; }
         public float? Rating { get; private set; }
-        public AssociatedPerson Director { get; private set; }
+        public Person Director { get; private set; }
         public List<AssociatedPerson> Actors { get; private set; }
         public string Genre { get; private set; }
 
@@ -24,7 +24,7 @@ namespace CinemaSearch
             Title = title;
         }
 
-        public Movie(int movieID, string title, bool? isAdult, int? runTime, int? releaseYear, float? rating, AssociatedPerson director, List<AssociatedPerson> actors, string genre)
+        public Movie(int movieID, string title, bool? isAdult, int? runTime, int? releaseYear, float? rating, Person director, List<AssociatedPerson> actors, string genre)
         {
             MovieID = movieID;
             Title = title;

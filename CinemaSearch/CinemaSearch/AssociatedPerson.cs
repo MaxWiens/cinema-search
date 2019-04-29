@@ -11,14 +11,12 @@ namespace CinemaSearch
         public int ID { get; private set; }
         public string Name { get; private set; }
         public string CharacterName { get; private set; }
-        public bool IsDirector { get; private set; }
 
         public AssociatedPerson(int id, string name, string characterName, bool isDirector)
         {
             Name = name;
             CharacterName = characterName;
             ID = id;
-            IsDirector = isDirector;
         }
 
         public override string ToString()

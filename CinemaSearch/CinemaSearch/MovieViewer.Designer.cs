@@ -223,20 +223,20 @@
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(49, 24);
-            this.toolStripDropDownButton2.Text = "Edit";
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(51, 24);
+            this.toolStripDropDownButton2.Text = "Add";
             // 
             // personToolStripMenuItem
             // 
             this.personToolStripMenuItem.Name = "personToolStripMenuItem";
-            this.personToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.personToolStripMenuItem.Text = "Movie";
             this.personToolStripMenuItem.Click += new System.EventHandler(this.uxAddMovie);
             // 
             // movieToolStripMenuItem
             // 
             this.movieToolStripMenuItem.Name = "movieToolStripMenuItem";
-            this.movieToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
+            this.movieToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.movieToolStripMenuItem.Text = "Person";
             this.movieToolStripMenuItem.Click += new System.EventHandler(this.uxAddPerson);
             // 
@@ -300,9 +300,10 @@
             this.Controls.Add(this.uxSearchTextLabel);
             this.Controls.Add(this.uxMovieSearchbox);
             this.Controls.Add(this.uxMovieListBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MovieViewer";
-            this.Text = "MovieListView";
+            this.Text = "Cinema Search";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

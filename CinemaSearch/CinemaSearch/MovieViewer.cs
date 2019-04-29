@@ -142,7 +142,7 @@ namespace CinemaSearch
 
         private void DisplayDirector(object sender, EventArgs e)
         {
-            DisplayPerson(_sqlinterface.MoviePersonFromID(((Movie)_currentlyDisplayed).Director.ID));
+            DisplayPerson(_sqlinterface.MoviePersonFromID(((Movie)_currentlyDisplayed).Director.PersonID));
         }
 
         private void uxResetInfo()

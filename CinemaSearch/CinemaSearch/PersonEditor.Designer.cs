@@ -90,8 +90,9 @@
             this.Controls.Add(this.uxSubmitButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.uxNameTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "PersonEditor";
-            this.Text = "PersonEditor";
+            this.Text = "Person Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 

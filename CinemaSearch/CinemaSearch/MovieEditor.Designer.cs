@@ -61,6 +61,7 @@
             this.uxTitleTextBox.Name = "uxTitleTextBox";
             this.uxTitleTextBox.Size = new System.Drawing.Size(164, 22);
             this.uxTitleTextBox.TabIndex = 0;
+            this.uxTitleTextBox.TextChanged += new System.EventHandler(this.EnsureNotEmpty);
             // 
             // uxSubmitButton
             // 
@@ -71,6 +72,7 @@
             this.uxSubmitButton.TabIndex = 1;
             this.uxSubmitButton.Text = "Submit";
             this.uxSubmitButton.UseVisualStyleBackColor = true;
+            this.uxSubmitButton.Click += new System.EventHandler(this.uxSubmitButton_Click);
             // 
             // uxGenresTextBox
             // 
@@ -112,6 +114,7 @@
             this.uxRuntimeTextBox.Name = "uxRuntimeTextBox";
             this.uxRuntimeTextBox.Size = new System.Drawing.Size(58, 22);
             this.uxRuntimeTextBox.TabIndex = 1;
+            this.uxRuntimeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnsureOnlyNumbers);
             // 
             // label4
             // 
@@ -128,6 +131,7 @@
             this.uxReleaseYearTextBox.Name = "uxReleaseYearTextBox";
             this.uxReleaseYearTextBox.Size = new System.Drawing.Size(69, 22);
             this.uxReleaseYearTextBox.TabIndex = 3;
+            this.uxReleaseYearTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnsureOnlyNumbers);
             // 
             // label5
             // 
@@ -144,6 +148,7 @@
             this.uxRatingTextBox.Name = "uxRatingTextBox";
             this.uxRatingTextBox.Size = new System.Drawing.Size(44, 22);
             this.uxRatingTextBox.TabIndex = 4;
+            this.uxRatingTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnsureOnlyDecimal);
             // 
             // uxSearchTextBox
             // 
@@ -151,6 +156,7 @@
             this.uxSearchTextBox.Name = "uxSearchTextBox";
             this.uxSearchTextBox.Size = new System.Drawing.Size(100, 22);
             this.uxSearchTextBox.TabIndex = 6;
+            this.uxSearchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uxSearchTextBox_KeyDown);
             // 
             // label6
             // 
@@ -179,6 +185,7 @@
             this.uxAddActorButton.TabIndex = 16;
             this.uxAddActorButton.Text = "Add As Actor";
             this.uxAddActorButton.UseVisualStyleBackColor = true;
+            this.uxAddActorButton.Click += new System.EventHandler(this.uxAddActorButton_Click);
             // 
             // uxAddDirectorButton
             // 
@@ -189,6 +196,7 @@
             this.uxAddDirectorButton.TabIndex = 17;
             this.uxAddDirectorButton.Text = "Add As Director";
             this.uxAddDirectorButton.UseVisualStyleBackColor = true;
+            this.uxAddDirectorButton.Click += new System.EventHandler(this.uxAddDirectorButton_Click);
             // 
             // uxActorsListBox
             // 
@@ -303,8 +311,9 @@
             this.Controls.Add(this.uxGenresTextBox);
             this.Controls.Add(this.uxSubmitButton);
             this.Controls.Add(this.uxTitleTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MovieEditor";
-            this.Text = "MovieEditor";
+            this.Text = "Movie Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 

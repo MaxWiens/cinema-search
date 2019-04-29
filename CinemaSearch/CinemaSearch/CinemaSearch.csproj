@@ -151,6 +151,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Content>
     <Content Include="Sql\Procedures\Movie.PersonSearch.sql" />
+    <Content Include="Sql\Procedures\Movie.PersonFromName.sql" />
     <Content Include="Sql\Procedures\Movie.SearchByMovieID.sql">
       <Generator>MSBuild:Compile</Generator>
     </Content>
