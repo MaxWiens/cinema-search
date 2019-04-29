@@ -52,6 +52,7 @@
             this.uxEditButton = new System.Windows.Forms.Button();
             this.uxGenreTextBox = new System.Windows.Forms.TextBox();
             this.uxDataListLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -229,14 +230,14 @@
             // personToolStripMenuItem
             // 
             this.personToolStripMenuItem.Name = "personToolStripMenuItem";
-            this.personToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
             this.personToolStripMenuItem.Text = "Movie";
             this.personToolStripMenuItem.Click += new System.EventHandler(this.uxAddMovie);
             // 
             // movieToolStripMenuItem
             // 
             this.movieToolStripMenuItem.Name = "movieToolStripMenuItem";
-            this.movieToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.movieToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
             this.movieToolStripMenuItem.Text = "Person";
             this.movieToolStripMenuItem.Click += new System.EventHandler(this.uxAddPerson);
             // 
@@ -276,11 +277,21 @@
             this.uxDataListLabel.Size = new System.Drawing.Size(0, 17);
             this.uxDataListLabel.TabIndex = 24;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(782, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "label2";
+            // 
             // MovieViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 554);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.uxDataListLabel);
             this.Controls.Add(this.uxGenreTextBox);
             this.Controls.Add(this.uxEditButton);
@@ -336,5 +347,6 @@
         private System.Windows.Forms.Button uxEditButton;
         private System.Windows.Forms.TextBox uxGenreTextBox;
         private System.Windows.Forms.Label uxDataListLabel;
+        private System.Windows.Forms.Label label2;
     }
 }

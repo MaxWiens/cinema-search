@@ -25,7 +25,7 @@ namespace CinemaSearch
         {
             InitializeComponent();
             _sqlInterface = sqlInterface;
-            _origionalMovie = movie;;
+            _origionalMovie = movie;
             if (movie != null)
             {
                 uxTitleTextBox.Text = movie.Title;
@@ -63,6 +63,7 @@ namespace CinemaSearch
             }
             _origionalActors = new List<AssociatedPerson>();
             _actors = new List<AssociatedPerson>();
+            uxActorsListBox.DataSource = (List<AssociatedPerson>)_actors;
         }
 
 
@@ -163,7 +164,7 @@ namespace CinemaSearch
                 }
                 else
                 {
-                    uxAddDirectorButton.Enabled = !(_director==null);
+                    uxAddDirectorButton.Enabled = _director==null;
                     uxAddActorButton.Enabled = true;
                 }
             }
@@ -179,11 +180,45 @@ namespace CinemaSearch
         private void uxAddActorButton_Click(object sender, EventArgs e)
         {
 
-            Person actor = ((List<Person>)uxSearchListBox.DataSource)[uxSearchListBox.SelectedIndex];
-            //dialog
-            //if (_actors.Contains())
-            //_actors.Add
-            //_actors = 
+            Person person = ((List<Person>)uxSearchListBox.DataSource)[uxSearchListBox.SelectedIndex];
+            TextDialog dialog = new TextDialog("Characters");
+            dialog.ShowDialog();
+
+            if (dialog.DialogResult == DialogResult.OK)
+            {
+                AssociatedPerson actor;
+                if (dialog.Result == string.Empty)
+                    actor = new AssociatedPerson(person.PersonID, person.Name, null, false);
+                else
+                    actor = new AssociatedPerson(person.PersonID, person.Name, dialog.Result, false);
+
+                if (_actors.Contains(actor))
+                    _actors[_actors.IndexOf(actor)] = actor;
+                else
+                    _actors.Add(actor);
+                uxRemoveActorButton.Enabled = true;
+            }
+            uxActorsListBox.DataSource = null;
+            uxActorsListBox.DataSource = _actors;
+        }
+
+        private void uxRemoveDirectorButton_Click(object sender, EventArgs e)
+        {
+            _director = null;
+            uxDirectorTextBox.Text = string.Empty;
+            uxRemoveDirectorButton.Enabled = false;
+        }
+
+        private void uxRemoveActorButton_Click(object sender, EventArgs e)
+        {
+            if(uxActorsListBox.SelectedIndex >= 0)
+            {
+                _actors.RemoveAt(uxActorsListBox.SelectedIndex);
+                if (_actors.Count <= 0)
+                    uxRemoveActorButton.Enabled = false;
+            }
+            uxActorsListBox.DataSource = null;
+            uxActorsListBox.DataSource = _actors;
         }
     }
 }

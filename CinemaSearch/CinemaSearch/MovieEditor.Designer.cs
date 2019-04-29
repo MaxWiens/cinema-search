@@ -44,7 +44,6 @@
             this.uxSearchListBox = new System.Windows.Forms.ListBox();
             this.uxAddActorButton = new System.Windows.Forms.Button();
             this.uxAddDirectorButton = new System.Windows.Forms.Button();
-            this.uxActorsListBox = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.uxRemoveActorButton = new System.Windows.Forms.Button();
@@ -53,6 +52,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.uxDirectorTextBox = new System.Windows.Forms.TextBox();
             this.uxRemoveDirectorButton = new System.Windows.Forms.Button();
+            this.uxActorsListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // uxTitleTextBox
@@ -198,15 +198,6 @@
             this.uxAddDirectorButton.UseVisualStyleBackColor = true;
             this.uxAddDirectorButton.Click += new System.EventHandler(this.uxAddDirectorButton_Click);
             // 
-            // uxActorsListBox
-            // 
-            this.uxActorsListBox.FormattingEnabled = true;
-            this.uxActorsListBox.ItemHeight = 16;
-            this.uxActorsListBox.Location = new System.Drawing.Point(15, 226);
-            this.uxActorsListBox.Name = "uxActorsListBox";
-            this.uxActorsListBox.Size = new System.Drawing.Size(206, 212);
-            this.uxActorsListBox.TabIndex = 18;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -234,6 +225,7 @@
             this.uxRemoveActorButton.TabIndex = 21;
             this.uxRemoveActorButton.Text = "Remove";
             this.uxRemoveActorButton.UseVisualStyleBackColor = true;
+            this.uxRemoveActorButton.Click += new System.EventHandler(this.uxRemoveActorButton_Click);
             // 
             // uxAdultCheckBox
             // 
@@ -280,12 +272,23 @@
             this.uxRemoveDirectorButton.TabIndex = 25;
             this.uxRemoveDirectorButton.Text = "Remove";
             this.uxRemoveDirectorButton.UseVisualStyleBackColor = true;
+            this.uxRemoveDirectorButton.Click += new System.EventHandler(this.uxRemoveDirectorButton_Click);
+            // 
+            // uxActorsListBox
+            // 
+            this.uxActorsListBox.FormattingEnabled = true;
+            this.uxActorsListBox.ItemHeight = 16;
+            this.uxActorsListBox.Location = new System.Drawing.Point(15, 226);
+            this.uxActorsListBox.Name = "uxActorsListBox";
+            this.uxActorsListBox.Size = new System.Drawing.Size(206, 212);
+            this.uxActorsListBox.TabIndex = 26;
             // 
             // MovieEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 450);
+            this.Controls.Add(this.uxActorsListBox);
             this.Controls.Add(this.uxRemoveDirectorButton);
             this.Controls.Add(this.uxDirectorTextBox);
             this.Controls.Add(this.label10);
@@ -294,7 +297,6 @@
             this.Controls.Add(this.uxRemoveActorButton);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.uxActorsListBox);
             this.Controls.Add(this.uxAddDirectorButton);
             this.Controls.Add(this.uxAddActorButton);
             this.Controls.Add(this.uxSearchListBox);
@@ -337,7 +339,6 @@
         private System.Windows.Forms.ListBox uxSearchListBox;
         private System.Windows.Forms.Button uxAddActorButton;
         private System.Windows.Forms.Button uxAddDirectorButton;
-        private System.Windows.Forms.ListBox uxActorsListBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button uxRemoveActorButton;
@@ -346,5 +347,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox uxDirectorTextBox;
         private System.Windows.Forms.Button uxRemoveDirectorButton;
+        private System.Windows.Forms.ListBox uxActorsListBox;
     }
 }

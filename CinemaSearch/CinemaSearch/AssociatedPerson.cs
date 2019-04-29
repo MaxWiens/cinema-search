@@ -26,6 +26,12 @@ namespace CinemaSearch
             else
                 return Name;
         }
-        
+
+        public override bool Equals(object p)
+        {
+            if (p.GetType() == typeof(AssociatedPerson))
+                return ID == ((AssociatedPerson)p).ID;
+            return base.Equals(p);
+        }
     }
 }

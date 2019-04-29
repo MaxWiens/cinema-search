@@ -28,12 +28,5 @@ namespace CinemaSearch
         }
 
         public override string ToString() => Name;
-
-        public override bool Equals(object p)
-        {
-            if (p.GetType() == typeof(Person))
-                return PersonID == ((Person)p).PersonID;
-            return base.Equals(p);
-        }
     }
 }

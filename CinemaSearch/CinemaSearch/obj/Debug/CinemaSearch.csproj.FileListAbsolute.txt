@@ -24,3 +24,4 @@ C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\bin\Debu
 C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.MovieEditor.resources
 C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.PersonEditor.resources
 C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.MovieViewer.resources
+C:\Users\RothM\OneDrive\Desktop\cinema-search\CinemaSearch\CinemaSearch\obj\Debug\CinemaSearch.TextDialog.resources
