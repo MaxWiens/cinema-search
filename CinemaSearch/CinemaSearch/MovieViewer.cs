@@ -154,6 +154,7 @@ namespace CinemaSearch
             uxData4.Text = String.Empty;
             uxData5.Text = String.Empty;
             uxData6.Text = String.Empty;
+            uxData7.Text = string.Empty;
             uxDatalistBox.DataSource = null;
         }
 
