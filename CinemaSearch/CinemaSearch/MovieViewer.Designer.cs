@@ -53,6 +53,8 @@
             this.uxGenreTextBox = new System.Windows.Forms.TextBox();
             this.uxDataListLabel = new System.Windows.Forms.Label();
             this.uxData7 = new System.Windows.Forms.Label();
+            this.populateDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uxBrowseForDataDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -209,6 +211,8 @@
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.populateDatabaseToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -286,6 +290,13 @@
             this.uxData7.TabIndex = 25;
             this.uxData7.Text = "uxData7";
             // 
+            // populateDatabaseToolStripMenuItem
+            // 
+            this.populateDatabaseToolStripMenuItem.Name = "populateDatabaseToolStripMenuItem";
+            this.populateDatabaseToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
+            this.populateDatabaseToolStripMenuItem.Text = "Populate Database...";
+            this.populateDatabaseToolStripMenuItem.Click += new System.EventHandler(this.populateDatabaseToolStripMenuItem_Click);
+            // 
             // MovieViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -348,5 +359,7 @@
         private System.Windows.Forms.TextBox uxGenreTextBox;
         private System.Windows.Forms.Label uxDataListLabel;
         private System.Windows.Forms.Label uxData7;
+        private System.Windows.Forms.ToolStripMenuItem populateDatabaseToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog uxBrowseForDataDialog;
     }
 }

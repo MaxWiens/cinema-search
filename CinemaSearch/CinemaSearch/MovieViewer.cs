@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -208,6 +209,7 @@ namespace CinemaSearch
                 new PersonEditor(_sqlinterface, (Person)_currentlyDisplayed).ShowDialog();
             }
         }
+
         private void populateDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var result = uxBrowseForDataDialog.ShowDialog();
@@ -229,7 +231,7 @@ namespace CinemaSearch
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show("Failed to populate database\n" + ex.ToString());
                 }
             } 
         }

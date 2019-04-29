@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="AssociatedPerson.cs" />
     <Compile Include="AssociatedMovie.cs" />
+    <Compile Include="DatabaseInit.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="MovieEditor.cs">
       <SubType>Form</SubType>

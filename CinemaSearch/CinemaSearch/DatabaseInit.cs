@@ -145,7 +145,7 @@ namespace CinemaSearch
             buildSchema.ExecuteNonQuery();
         }
 
-        private static void CreateTables(string connectionString)
+        public static void CreateTables(string connectionString)
         {
             string _setupDir = Path.GetFullPath(Directory.GetCurrentDirectory() + @"..\..\..\SQL\Procedures\");
 
