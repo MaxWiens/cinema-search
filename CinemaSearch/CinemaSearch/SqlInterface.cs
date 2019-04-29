@@ -26,52 +26,6 @@ namespace CinemaSearch
             _connectionString = connectionString;
         }
 
-
-        public void InitalizeDatabase()
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand("SELECT 1 FROM sys.databases DB WHERE DB.name = N'CinemaSearch'", connection))
-                {
-                    object result = command.ExecuteScalar();
-
-                    if (result == null)
-                    {
-                        Server s = new Server(new ServerConnection(connection));
-                        s.AttachDatabase("CinemaSearch", new StringCollection { _sqlDir + "Data\\CinemaSearch.mdf" });
-                    }
-                }
-
-
-                connection.ChangeDatabase("CinemaSearch");
-
-
-                string[] ProcedureFiles = {
-                    @"Procedures\Movie.Search.sql",
-                    @"Procedures\Movie.PersonSearch.sql",
-                    @"Procedures\Movie.SearchByMovieID.sql",
-                    @"Procedures\Movie.AssociatedPeople.sql",
-                    @"Procedures\Movie.AssociatedMovies.sql",
-                    @"Procedures\Movie.GetDirector.sql",
-                    @"Procedures\Movie.PersonFromID.sql",
-                    @"Procedures\Movie.PersonFromName.sql"
-                };
-
-                foreach (string filename in ProcedureFiles)
-                {
-                    string contents = File.ReadAllText(_sqlDir + filename);
-                    using (SqlCommand command = new SqlCommand(contents, connection))
-                    {
-                        command.CommandType = System.Data.CommandType.Text;
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-        }
-
-
-
         public List<AssociatedPerson> SearchAssociatedPeople(int movieID)
         {
             List<AssociatedPerson> results = new List<AssociatedPerson>();
@@ -205,17 +159,18 @@ namespace CinemaSearch
 
                 SqlDataReader r = command.ExecuteReader();
                 if (r.Read()) {
-                    object[] values = new object[7];
-                    r.GetValues(values); //M.MovieID, M.Title, M.IsAdult, M.RunTime, M.ReleaseYear, R.Rating, MG.GenreName
+                    object[] values = new object[8];
+                    r.GetValues(values); //M.MovieID, M.Title, M.IsAdult, M.RunTime, M.ReleaseYear, R.Rating, MG.GenreName, S.StudioName
 
                     bool? isAdult = values[2] == System.DBNull.Value ? null : new bool?((bool)values[2]);
                     int? runTime = values[3] == System.DBNull.Value || (int)values[3] < 0 ? null : new int?((int)values[3]);
                     int? releaseYear = values[4] == System.DBNull.Value || (int)values[3] < 0 ? null : new int?((int)values[4]);
                     float? rating = values[5] == System.DBNull.Value ? null : new float?((float)(double)values[5]);
+                    string studio = values[7] == System.DBNull.Value || (string)values[7] == string.Empty ? null : (string)values[7];
 
                     Person director = MovieGetDirector((int)values[0]);
                     List<AssociatedPerson> actors = MovieAssociatedPeople((int)values[0]);
-                    return new Movie((int)values[0], (string)values[1], isAdult, runTime, releaseYear, rating, director, actors, (string)values[6]);
+                    return new Movie((int)values[0], (string)values[1], isAdult, runTime, releaseYear, rating, director, actors, (string)values[6], studio);
                 }
                 connection.Close();
             }

@@ -17,6 +17,7 @@ namespace CinemaSearch
         public Person Director { get; private set; }
         public List<AssociatedPerson> Actors { get; private set; }
         public string Genre { get; private set; }
+        public string Studio { get; private set; }
 
         public Movie(int movieID, string title)
         {
@@ -24,7 +25,7 @@ namespace CinemaSearch
             Title = title;
         }
 
-        public Movie(int movieID, string title, bool? isAdult, int? runTime, int? releaseYear, float? rating, Person director, List<AssociatedPerson> actors, string genre)
+        public Movie(int movieID, string title, bool? isAdult, int? runTime, int? releaseYear, float? rating, Person director, List<AssociatedPerson> actors, string genre, string studio)
         {
             MovieID = movieID;
             Title = title;
@@ -35,6 +36,7 @@ namespace CinemaSearch
             Director = director;
             Actors = actors;
             Genre = genre;
+            Studio = studio;
         }
 
         public override string ToString() => Title;

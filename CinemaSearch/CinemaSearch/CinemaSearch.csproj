@@ -143,15 +143,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\Microsoft.SqlServer.ConnectionInfo.dll" />
-    <Content Include="lib\Microsoft.SqlServer.Smo.dll" />
-    <Content Include="Sql\Data\CinemaSearch.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Sql\Data\CinemaSearch_log.ldf">
-      <DependentUpon>CinemaSearch.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Sql\Procedures\Movie.AssociatedPeople.sql" />
     <Content Include="Sql\Procedures\Movie.GetDirector.sql" />
     <Content Include="Sql\Procedures\Movie.AssociatedMovies.sql">
@@ -187,6 +178,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="Sql\Data\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
