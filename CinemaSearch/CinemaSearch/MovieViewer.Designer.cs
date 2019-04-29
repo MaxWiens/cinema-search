@@ -45,6 +45,7 @@
             this.uxData5 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.populateDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,6 @@
             this.uxGenreTextBox = new System.Windows.Forms.TextBox();
             this.uxDataListLabel = new System.Windows.Forms.Label();
             this.uxData7 = new System.Windows.Forms.Label();
-            this.populateDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uxBrowseForDataDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -219,6 +219,13 @@
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(46, 24);
             this.toolStripDropDownButton1.Text = "File";
             // 
+            // populateDatabaseToolStripMenuItem
+            // 
+            this.populateDatabaseToolStripMenuItem.Name = "populateDatabaseToolStripMenuItem";
+            this.populateDatabaseToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
+            this.populateDatabaseToolStripMenuItem.Text = "Populate Database...";
+            this.populateDatabaseToolStripMenuItem.Click += new System.EventHandler(this.populateDatabaseToolStripMenuItem_Click);
+            // 
             // toolStripDropDownButton2
             // 
             this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -284,18 +291,11 @@
             // uxData7
             // 
             this.uxData7.AutoSize = true;
-            this.uxData7.Location = new System.Drawing.Point(782, 64);
+            this.uxData7.Location = new System.Drawing.Point(350, 148);
             this.uxData7.Name = "uxData7";
             this.uxData7.Size = new System.Drawing.Size(60, 17);
             this.uxData7.TabIndex = 25;
             this.uxData7.Text = "uxData7";
-            // 
-            // populateDatabaseToolStripMenuItem
-            // 
-            this.populateDatabaseToolStripMenuItem.Name = "populateDatabaseToolStripMenuItem";
-            this.populateDatabaseToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
-            this.populateDatabaseToolStripMenuItem.Text = "Populate Database...";
-            this.populateDatabaseToolStripMenuItem.Click += new System.EventHandler(this.populateDatabaseToolStripMenuItem_Click);
             // 
             // MovieViewer
             // 

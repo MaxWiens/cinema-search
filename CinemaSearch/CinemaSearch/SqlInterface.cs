@@ -304,10 +304,6 @@ namespace CinemaSearch
             return null;
         }
 
-
-
-
-
         public Person MoviePersonFromID(int personID)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
