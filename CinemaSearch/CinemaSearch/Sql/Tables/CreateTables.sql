@@ -3,7 +3,8 @@
 	Title NVARCHAR(512) NOT NULL,
 	IsAdult TINYINT,
 	Runtime INT,
-	ReleaseYear INT
+	ReleaseYear INT,
+	StudioID INT NOT NULL
 );
 
 CREATE TABLE Movie.Person (
@@ -56,4 +57,9 @@ CREATE TABLE Movie.Language (
 CREATE TABLE Movie.Region (
 	RegionID INT NOT NULL PRIMARY KEY,
 	RegionName NVARCHAR(64) NOT NULL UNIQUE
+);
+
+CREATE TABLE Movie.Studio (
+	StudioID INT NOT NULL PRIMARY KEY,
+	StudioName NVARCHAR(256) NOT NULL
 );

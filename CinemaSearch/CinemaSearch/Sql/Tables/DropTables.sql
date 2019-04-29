@@ -30,4 +30,7 @@ IF OBJECT_ID('Movie.Rating', 'U') IS NOT NULL
   
 IF OBJECT_ID('Movie.Region', 'U') IS NOT NULL 
   DROP TABLE Movie.Region;
+
+IF OBJECT_ID('Movie.Studio', 'U') IS NOT NULL 
+  DROP TABLE Movie.Studio;
   
