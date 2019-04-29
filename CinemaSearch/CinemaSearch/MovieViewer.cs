@@ -15,15 +15,16 @@ namespace CinemaSearch
     {
         private SqlInterface _sqlinterface;
         private object _currentlyDisplayed;
+        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True";
 
         public MovieViewer()
         {
             InitializeComponent();
 
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True";
+            
 
             _sqlinterface = new SqlInterface(connectionString);
-            _sqlinterface.InitalizeDatabase();
+            DatabaseInit.InitalizeDatabase(connectionString);
             uxResetInfo();
             uxSearchForComboBox.SelectedIndex = 0;
             uxSearchForComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
