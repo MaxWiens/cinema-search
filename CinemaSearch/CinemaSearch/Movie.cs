@@ -25,7 +25,7 @@ namespace CinemaSearch
             Title = title;
         }
 
-        public Movie(int movieID, string title, bool? isAdult, int? runTime, int? releaseYear, float? rating, Person director, List<AssociatedPerson> actors, string genre, string studio)
+        public Movie(int movieID, string title, bool? isAdult, int? runTime, int? releaseYear, float? rating, Person director, List<AssociatedPerson> actors, string studio, string genre)
         {
             MovieID = movieID;
             Title = title;

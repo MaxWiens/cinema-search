@@ -128,7 +128,7 @@ namespace CinemaSearch
 
             // genres
             if (movie.Genre != null)
-                uxData5.Text = "Genre(s): " + movie.Genre;
+                uxData5.Text = "Genre: " + movie.Genre;
             else
                 uxData5.Text = "No Genre Data";
 
@@ -140,9 +140,9 @@ namespace CinemaSearch
 
             // studio
             if (movie.Studio != null)
-                uxData6.Text = movie.Studio;
+                uxData7.Text = movie.Studio;
             else
-                uxData6.Text = "No Studio Data";
+                uxData7.Text = "No Studio Data";
 
             // actor list
             uxDatalistBox.DataSource = movie.Actors;
