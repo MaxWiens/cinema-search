@@ -1,4 +1,6 @@
-﻿CREATE OR ALTER PROCEDURE Movie.AssociatedMovies 
+﻿/*
+Defines a procedure to get all the Movies associated with a Person, given their ID
+*/CREATE OR ALTER PROCEDURE Movie.AssociatedMovies 
 	@personID INT
 AS
 SELECT

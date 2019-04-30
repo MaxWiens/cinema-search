@@ -1,4 +1,8 @@
-﻿CREATE OR ALTER PROCEDURE Movie.PersonSearch
+﻿/*
+Gets all people that are actors or directors in a film with a Genre similar to 
+@MovieGenre and a person name similar to @Name
+*/
+CREATE OR ALTER PROCEDURE Movie.PersonSearch
 	@Name NVARCHAR(512),
 	@MovieGenre NVARCHAR(512)
 AS
