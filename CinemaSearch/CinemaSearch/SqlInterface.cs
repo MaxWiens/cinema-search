@@ -177,7 +177,7 @@ namespace CinemaSearch
             return null;
         }
 
-        public void MovieUpdatePerson(int personID, string name, int? birthDate)
+        public void MovieUpdatePerson(int personID, string name, int? birthYear)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -188,7 +188,7 @@ namespace CinemaSearch
 
                 command.Parameters.AddWithValue("PersonID", personID);
                 command.Parameters.AddWithValue("Name", name);
-                command.Parameters.AddWithValue("BirthDate", birthDate);
+                command.Parameters.AddWithValue("BirthYear", birthYear);
 
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.ExecuteNonQuery();
