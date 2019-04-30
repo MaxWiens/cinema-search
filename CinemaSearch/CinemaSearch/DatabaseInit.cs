@@ -93,9 +93,9 @@ namespace CinemaSearch
         // Creates or recreates the tables of the data base. "setupFilePath" is a path to DataBaseSetup.sql file. "connectionString" is the SQL connection string of your local DB.
         private static void CreateDatabase(string connectionString)
         {
-            string _setupDir = Path.GetFullPath(Directory.GetCurrentDirectory() + @"..\..\..\SQL\Procedures\");
-            string script = System.IO.File.ReadAllText(_setupDir + "CreateDatabase.sql");
-            string schemaScript = System.IO.File.ReadAllText(_setupDir + "CreateSchema.sql");
+            string _setupDir = Path.GetFullPath(Directory.GetCurrentDirectory() + @"..\..\..\SQL\");
+            string script = System.IO.File.ReadAllText(_setupDir + @"Database\CreateDatabase.sql");
+            string schemaScript = System.IO.File.ReadAllText(_setupDir + @"Schema\CreateSchema.sql");
 
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();

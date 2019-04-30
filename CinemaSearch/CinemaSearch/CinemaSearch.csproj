@@ -143,6 +143,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Sql\Database\CreateDatabase.sql" />
+    <Content Include="Sql\Schema\CreateSchema.sql" />
     <Content Include="Sql\Procedures\Movie.AssociatedPeople.sql" />
     <Content Include="Sql\Procedures\Movie.GetDirector.sql" />
     <Content Include="Sql\Procedures\Movie.AssociatedMovies.sql">
@@ -162,7 +164,6 @@
     <Content Include="Sql\Procedures\Movie.FindByPerson.sql" />
     <Content Include="Sql\Procedures\Movie.FindByTitle.sql" />
     <Content Include="Sql\Procedures\MovieFindByGenre.sql" />
-    <Content Include="Sql\Schema\Movie.sql" />
     <Content Include="Sql\Tables\CreateTables.sql" />
   </ItemGroup>
   <ItemGroup>
