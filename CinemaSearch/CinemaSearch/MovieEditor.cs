@@ -89,7 +89,7 @@ namespace CinemaSearch
         {
             if (uxTitleTextBox.Text == string.Empty) return;
 
-            int? runtime;
+            int? runtime = null;
             if (uxRuntimeTextBox.Text != string.Empty) {
                 if (!int.TryParse(uxRuntimeTextBox.Text, out int result)) return;
                 runtime = new int?(result);
@@ -97,14 +97,14 @@ namespace CinemaSearch
 
             string genres = uxGenresTextBox.Text == string.Empty ? null : uxGenresTextBox.Text;
 
-            int? releaseYear;
+            int? releaseYear = null;
             if (uxReleaseYearTextBox.Text != string.Empty)
             {
                 if (!int.TryParse(uxReleaseYearTextBox.Text, out int result)) return;
                 releaseYear = new int?(result);
             }
 
-            float? rating;
+            float? rating = null;
             if (uxRatingTextBox.Text != string.Empty)
             {
                 if (!float.TryParse(uxReleaseYearTextBox.Text, out float result)) return;
@@ -114,23 +114,39 @@ namespace CinemaSearch
             bool isAdult = uxAdultCheckBox.Checked;
 
             // insert/update movie
+            int movieID;
+            if (_origionalMovie != null) // update
+            {
+                movieID = _origionalMovie.MovieID;
+                _sqlInterface.MovieUpdateMovie(movieID, uxTitleTextBox.Text, isAdult, runtime, releaseYear, null, null);
+            }
+            else // insert
+            {
+                movieID = _sqlInterface.MovieAddMovie(uxTitleTextBox.Text, isAdult, runtime, releaseYear, null, null);
+                if (rating != null) _sqlInterface.MovieInsertNewRating(movieID, rating.Value);
+            }
+                
+
+            
 
             if (_director != null)
             {
-                // insert director
+                _sqlInterface.MovieInsertDirector(movieID, _director.PersonID);
             }
 
             GetDiff(out List<AssociatedPerson> removed, out List<AssociatedPerson> updated);
-            
-            if (removed.Count != 0)
+
+            foreach (AssociatedPerson ap in removed)
             {
-                // remove actors
+                _sqlInterface.MovieRemoveActor(movieID, ap.ID);
             }
 
-            if (updated.Count != 0)
+            foreach (AssociatedPerson ap in updated)
             {
-                // update/insert actors
+                _sqlInterface.MovieInsertActor(movieID, ap.ID, ap.CharacterName);
             }
+
+            Close();
         }
 
         private void EnsureNotEmpty(object sender, EventArgs e)

@@ -44,7 +44,12 @@ namespace CinemaSearch
                     @"Procedures\Movie.PersonSearch.sql",
                     @"Procedures\Movie.AddPerson.sql",
                     @"Procedures\Movie.UpdatePerson.sql",
-                    @"Procedures\Movie.AddMovie.sql"
+                    @"Procedures\Movie.AssociatedData.sql",
+                    @"Procedures\Movie.RemoveActor.sql",
+                    @"Procedures\Movie.InsertActor.sql",
+                    @"Procedures\Movie.InsertDirector.sql",
+                    @"Procedures\Movie.UpdateMovie.sql",
+                    @"Procedures\Movie.InsertNewRating.sql"
                 };
 
                 foreach (string filename in functionFiles)

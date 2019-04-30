@@ -167,10 +167,10 @@ namespace CinemaSearch
                     int? releaseYear = values[4] == System.DBNull.Value || (int)values[3] < 0 ? null : new int?((int)values[4]);
                     float? rating = values[5] == System.DBNull.Value ? null : new float?((float)(double)values[5]);
                     string studio = values[7] == System.DBNull.Value || (string)values[7] == string.Empty ? null : (string)values[7];
-
-                    Person director = MovieGetDirector((int)values[0]);
+                    
+                        Person director = MovieGetDirector((int)values[0]);
                     List<AssociatedPerson> actors = MovieAssociatedPeople((int)values[0]);
-                    return new Movie((int)values[0], (string)values[1], isAdult, runTime, releaseYear, rating, director, actors, (string)values[6], studio);
+                    return new Movie((int)values[0], (string)values[1], isAdult, runTime, releaseYear, rating, director, actors, values[6] == System.DBNull.Value ? null : (string)values[6], studio);
                 }
                 connection.Close();
             }
@@ -215,14 +215,14 @@ namespace CinemaSearch
             }
         }
         
-        public void MovieAddMovie(string title, bool? isAdult, int? runtime, int? year, int? studio, int? genre)
+        public int MovieAddMovie(string title, bool? isAdult, int? runtime, int? year, int? studio, int? genre)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 connection.ChangeDatabase("CinemaSearch");
 
-                SqlCommand command = new SqlCommand("Movie.AddMovie", connection);
+                SqlCommand command = new SqlCommand("Movie.InsertNewMovie", connection);
 
                 command.Parameters.AddWithValue("Title", title);
                 
@@ -257,7 +257,7 @@ namespace CinemaSearch
                 }
 
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.ExecuteNonQuery();
+                return (int)command.ExecuteScalar();
             }
         }
 
@@ -401,6 +401,142 @@ namespace CinemaSearch
                 connection.Close();
             }
             return null;
+        }
+
+        public void MovieInsertNewRating(int movieID, float rating)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.InsertNewRating", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("MovieID", movieID);
+                command.Parameters.AddWithValue("Rating", rating);
+
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        public void MovieUpdateMovie(int movieID, string title, bool? isAdult, int? runtime, int? year, int? studio, int? genre)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.UpdateMovie", connection);
+
+                command.Parameters.AddWithValue("MovieID", movieID);
+                command.Parameters.AddWithValue("Title", title);
+
+                if (isAdult == null)
+                {
+                    command.Parameters.AddWithValue("IsAdult", System.DBNull.Value);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("IsAdult", isAdult);
+                }
+
+                if (runtime == null)
+                {
+                    command.Parameters.AddWithValue("Runtime", System.DBNull.Value);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("Runtime", runtime);
+                }
+
+                if (year == null)
+                {
+                    command.Parameters.AddWithValue("ReleaseYear", System.DBNull.Value);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("ReleaseYear", year);
+                }
+
+                if (studio == null)
+                {
+                    command.Parameters.AddWithValue("StudioID", System.DBNull.Value);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("StudioID", studio);
+                }
+
+                if (genre == null)
+                {
+                    command.Parameters.AddWithValue("GenreID", System.DBNull.Value);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("GenreID", genre);
+                }
+
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void MovieInsertDirector(int movieID, int personID)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.InsertDirector", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("MovieID", movieID);
+                command.Parameters.AddWithValue("PersonID", personID);
+
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        public void MovieInsertActor(int movieID, int personID, string characters)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.InsertActor", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("MovieID", movieID);
+                command.Parameters.AddWithValue("PersonID", personID);
+                command.Parameters.AddWithValue("CharacterName", characters);
+
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+
+        public void MovieRemoveActor(int movieID, int personID)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.RemoveActor", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("MovieID", movieID);
+                command.Parameters.AddWithValue("PersonID", personID);
+
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
     }
 }

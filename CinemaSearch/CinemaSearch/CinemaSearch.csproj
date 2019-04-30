@@ -144,6 +144,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sql\Database\CreateDatabase.sql" />
+    <Content Include="Sql\Procedures\Movie.InsertNewRating.sql" />
+    <Content Include="Sql\Procedures\Movie.UpdateMovie.sql" />
+    <Content Include="Sql\Procedures\Movie.InsertDirector.sql" />
+    <Content Include="Sql\Procedures\Movie.InsertActor.sql" />
+    <Content Include="Sql\Procedures\Movie.RemoveActor.sql" />
+    <Content Include="Sql\Procedures\Movie.AssociatedData.sql" />
+    <Content Include="Sql\Procedures\Movie.AddMovie.sql" />
     <Content Include="Sql\Schema\CreateSchema.sql" />
     <Content Include="Sql\Procedures\Movie.AssociatedPeople.sql" />
     <Content Include="Sql\Procedures\Movie.GetDirector.sql" />

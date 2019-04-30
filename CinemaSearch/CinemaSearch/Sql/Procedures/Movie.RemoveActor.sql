@@ -1,0 +1,9 @@
+CREATE OR ALTER PROCEDURE Movie.RemoveActor
+@MovieID INT,
+@PersonID INT
+AS
+BEGIN TRAN
+	DELETE FROM Movie.Actor
+		WHERE MovieID = @MovieID AND PersonID = @PersonID
+COMMIT TRAN
+;
