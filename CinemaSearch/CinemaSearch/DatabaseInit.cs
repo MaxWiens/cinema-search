@@ -56,35 +56,6 @@ namespace CinemaSearch
                 }
             }
         }
-        public static void PopulateDatabase(string connnectionString)
-        {
-            CreateTables(connnectionString);
-            string _dataDir = Path.GetFullPath(Directory.GetCurrentDirectory() + @"..\..\..\SQL\Data\");
-            string moviesPath = _dataDir + "Movie.Movies.tsv";
-            string actorPath = _dataDir + "Movie.Actor.tsv";
-            string directorPath = _dataDir + "Movie.Director.tsv";
-            string genrePath = _dataDir + "Movie.Genre.tsv";
-            string personPath = _dataDir + "Movie.Person.tsv";
-            string ratingPath = _dataDir + "Movie.Rating.tsv";
-
-            string[] filePaths = { moviesPath, actorPath, directorPath, genrePath, personPath, ratingPath };
-            string[] tables = { "Movie.Movies", "Movie.Actor", "Movie.Director", "Movie.Genre", "Movie.Person", "Movie.Rating" };
-
-            using (SqlConnection connection = new SqlConnection(connnectionString))
-            {
-                connection.Open();
-                connection.ChangeDatabase("CinemaSearch");
-                for (int tableIndex = 0; tableIndex < tables.Length; tableIndex++)
-                {
-                    string commandString = "BULK INSERT " + tables[tableIndex] + " FROM '" + filePaths[tableIndex] + "' WITH (FIELDTERMINATOR = '\t', ROWTERMINATOR = '0x0a');";
-                    using (SqlCommand command = new SqlCommand(commandString, connection))
-                    {
-                        command.CommandTimeout = 120;
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-        }
 
         public static void PopulateDatabase(string connnectionString, string dataDir)
         {
@@ -94,13 +65,12 @@ namespace CinemaSearch
             string actorPath = _dataDir + "Movie.Actor.tsv";
             string directorPath = _dataDir + "Movie.Director.tsv";
             string genrePath = _dataDir + "Movie.Genre.tsv";
-            string movieGenrePath = _dataDir + "Movie.MovieGenre.tsv";
             string personPath = _dataDir + "Movie.Person.tsv";
             string ratingPath = _dataDir + "Movie.Rating.tsv";
             string studioPath = _dataDir + "Movie.Studio.tsv";
 
-            string[] filePaths = { moviesPath,  actorPath,      directorPath,     genrePath,        movieGenrePath,     personPath,     ratingPath,     studioPath };
-            string[] tables = { "Movie.Movies", "Movie.Actor",  "Movie.Director", "Movie.Genre",    "Movie.MovieGenre", "Movie.Person", "Movie.Rating", "Movie.Studio" };
+            string[] filePaths = { moviesPath,  actorPath,      directorPath,     genrePath,     personPath,     ratingPath,     studioPath };
+            string[] tables = { "Movie.Movies", "Movie.Actor",  "Movie.Director", "Movie.Genre", "Movie.Person", "Movie.Rating", "Movie.Studio" };
 
             using (SqlConnection connection = new SqlConnection(connnectionString))
             {
