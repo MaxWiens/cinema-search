@@ -1,4 +1,7 @@
-﻿CREATE OR ALTER PROCEDURE Movie.FindByPerson
+﻿/*
+Defines a procedure that will find any movie titles that have an actor or director
+with name similar to @PersonName
+*/CREATE OR ALTER PROCEDURE Movie.FindByPerson
 	@PersonName NVARCHAR(64)
 AS
 
