@@ -6,14 +6,16 @@ CREATE OR ALTER PROCEDURE Movie.UpdateMovie
 @ReleaseYear INT,
 @StudioID INT,
 @GenreID INT
-AS 
-UPDATE [Movie].[Movies]
-SET
-	Title = @Title,
-    IsAdult = @IsAdult,
-    Runtime = @Runtime,
-    ReleaseYear = @ReleaseYear,
-	StudioID = @StudioID,
-	GenreID = @GenreID
-WHERE MovieID = @MovieID
+AS
+BEGIN TRAN
+	UPDATE [Movie].[Movies]
+	SET
+		Title = @Title,
+		IsAdult = @IsAdult,
+		Runtime = @Runtime,
+		ReleaseYear = @ReleaseYear,
+		StudioID = @StudioID,
+		GenreID = @GenreID
+	WHERE MovieID = @MovieID
+COMMIT TRAN
 ;

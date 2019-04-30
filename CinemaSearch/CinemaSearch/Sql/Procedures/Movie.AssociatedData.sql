@@ -8,11 +8,11 @@ CREATE OR ALTER PROCEDURE Movie.InsertNewMovie
 @GenreID INT
 AS
 declare @NewMovieID INT 
-BEGIN
+BEGIN TRAN
 	SET @NewMovieID = (SELECT MAX(MovieID) FROM Movie.Movies)+1;
         INSERT INTO Movie.Movies (MovieID, Title, IsAdult, Runtime, ReleaseYear, StudioID, GenreID)
 		VALUES ((SELECT MAX(MovieID) FROM Movie.Movies)+1, @Title, @IsAdult, @Runtime, @ReleaseYear, @StudioID, @GenreID);
     COMMIT TRANSACTION
     RETURN @NewMovieID
-END;
+COMMIT TRAN;
 

@@ -8,8 +8,7 @@ Runtime, and ReleaseYear
    @Runtime INT,
    @ReleaseYear YEAR
 AS
-
+BEGIN TRAN
 INSERT Person.Person(MovieID, Title, IsAdult, Runtime, ReleaseYear)
-VALUES(@MovieID, @Title, @IsAdult, @Runtime, @ReleaseYear);
-
-GO
+VALUES(@MovieID, @Title, @IsAdult, @Runtime, @ReleaseYear)
+COMMIT TRAN;
