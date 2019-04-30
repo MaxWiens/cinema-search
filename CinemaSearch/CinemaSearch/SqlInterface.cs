@@ -206,9 +206,9 @@ namespace CinemaSearch
 
                 command.Parameters.AddWithValue("Name", name);
                 if (birthYear == null)
-                    command.Parameters.AddWithValue("BirthDate", null);
+                    command.Parameters.AddWithValue("BirthYear", System.DBNull.Value);
                 else
-                    command.Parameters.AddWithValue("BirthDate", birthYear.Value);
+                    command.Parameters.AddWithValue("BirthYear", birthYear.Value);
 
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.ExecuteNonQuery();

@@ -38,9 +38,10 @@ namespace CinemaSearch
                 {
                     string name = uxNameTextBox.Text;
 
-                    int? birthYear = uxBirthYear.Text == string.Empty ? null : new int?(int.Parse(uxNameTextBox.Text));
+                    int? birthYear = uxBirthYear.Text == string.Empty ? null : new int?(int.Parse(uxBirthYear.Text));
 
                     _sqlInterface.MovieAddPerson(name, birthYear);
+                    Close();
 
                 }
                 // editing Person

@@ -3,10 +3,10 @@
 	@MovieGenre NVARCHAR(512)
 AS
 SELECT AP.PersonID, AP.Name
-	FROM Movie.Movies M 
+	FROM Movie.Person AP
+		LEFT JOIN Movie.Actor A ON A.PersonID = AP.PersonID
+		LEFT JOIN Movie.Movies M ON M.MovieID = A.MovieID
 		LEFT JOIN Movie.Genre G ON G.GenreID = M.GenreID
-		INNER JOIN Movie.Actor A ON A.MovieID = M.MovieID
-		INNER JOIN Movie.Person AP ON AP.PersonID = A.PersonID
 	WHERE
 		(
 			AP.[Name] LIKE @Name OR 
@@ -16,10 +16,10 @@ SELECT AP.PersonID, AP.Name
 UNION
 SELECT * FROM (
 	SELECT DP.PersonID, DP.Name
-	FROM Movie.Movies M
+	FROM Movie.Person DP
+		LEFT JOIN Movie.Director D ON D.PersonID = DP.PersonID
+		LEFT JOIN Movie.Movies M ON M.MovieID = D.MovieID
 		LEFT JOIN Movie.Genre G ON G.GenreID = M.GenreID
-		INNER JOIN Movie.Director D ON D.MovieID = M.MovieID
-		INNER JOIN Movie.Person DP ON DP.PersonID = D.PersonID
 	WHERE
 		(
 			DP.[Name] LIKE @Name OR 
