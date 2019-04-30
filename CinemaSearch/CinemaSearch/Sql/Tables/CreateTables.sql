@@ -7,9 +7,6 @@ IF OBJECT_ID('Movie.Person', 'U') IS NOT NULL
 IF OBJECT_ID('Movie.Genre', 'U') IS NOT NULL 
   DROP TABLE Movie.Genre;
   
-IF OBJECT_ID('Movie.MovieGenre', 'U') IS NOT NULL 
-  DROP TABLE Movie.MovieGenre;
-  
 IF OBJECT_ID('Movie.Director', 'U') IS NOT NULL 
   DROP TABLE Movie.Director;
   
@@ -28,7 +25,8 @@ CREATE TABLE Movie.Movies (
 	IsAdult BIT,
 	Runtime INT,
 	ReleaseYear INT,
-	StudioID INT
+	StudioID INT,
+	GenreID INT
 );
 
 CREATE TABLE Movie.Person (
@@ -39,12 +37,7 @@ CREATE TABLE Movie.Person (
 
 CREATE TABLE Movie.Genre (
 	GenreID INT PRIMARY KEY,
-	GenreName NVARCHAR(32) NOT NULL UNIQUE
-);
-
-CREATE TABLE Movie.MovieGenre (
-	MovieID INT NOT NULL PRIMARY KEY,
-	GenreName NVARCHAR(32)
+	GenreName NVARCHAR(64) NOT NULL UNIQUE
 );
 
 CREATE TABLE Movie.Rating (
