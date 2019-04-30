@@ -60,7 +60,7 @@ namespace CinemaSearch
                         birthyear = new int?(year);
                     }
 
-                    //_sqlInterface.MovieUpdatePerson(_personID.Value, name, birthYear);
+                    _sqlInterface.MovieUpdatePerson(_personID.Value, name, birthYear);
                 }
             }
         }
