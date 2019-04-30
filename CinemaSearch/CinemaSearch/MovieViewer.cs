@@ -224,7 +224,7 @@ namespace CinemaSearch
                 try
                 {
                     string[] files = Directory.GetFiles(uxBrowseForDataDialog.SelectedPath, "*.tsv");
-                    if(files.Length < 8)
+                    if(files.Length < 6)
                     {
                         MessageBox.Show("Invalid path. Some data files (.tsv) weren't found.");
                     } else

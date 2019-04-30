@@ -164,7 +164,6 @@
     <Content Include="Sql\Procedures\MovieFindByGenre.sql" />
     <Content Include="Sql\Schema\Movie.sql" />
     <Content Include="Sql\Tables\CreateTables.sql" />
-    <Content Include="Sql\Tables\DropTables.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -180,7 +179,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
-    <Folder Include="Sql\Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
