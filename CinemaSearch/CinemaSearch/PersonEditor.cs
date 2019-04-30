@@ -47,9 +47,9 @@ namespace CinemaSearch
                 else
                 {
                     string name = uxNameTextBox.Text == string.Empty ? null : uxNameTextBox.Text;
-                    int? birthyear;
+                    int? birthYear;
                     if (uxBirthYear.Text == string.Empty)
-                        birthyear = null;
+                        birthYear = null;
                     else
                     {
                         if (!int.TryParse(uxBirthYear.Text, out int year))
@@ -57,10 +57,10 @@ namespace CinemaSearch
                             MessageBox.Show("Failed to submit");
                             return;
                         }
-                        birthyear = new int?(year);
+                        birthYear = new int?(year);
                     }
 
-                    _sqlInterface.MovieUpdatePerson(_personID.Value, name, birthYear);
+                    _sqlInterface.MovieUpdatePerson(_person.PersonID, name, birthYear);
                 }
             }
         }
