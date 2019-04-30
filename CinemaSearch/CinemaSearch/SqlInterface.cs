@@ -214,6 +214,52 @@ namespace CinemaSearch
                 command.ExecuteNonQuery();
             }
         }
+        
+        public void MovieAddMovie(string title, bool? isAdult, int? runtime, int? year, int? studio, int? genre)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.ChangeDatabase("CinemaSearch");
+
+                SqlCommand command = new SqlCommand("Movie.AddMovie", connection);
+
+                command.Parameters.AddWithValue("Title", title);
+                
+                if(isAdult == null) {
+                    command.Parameters.AddWithValue("IsAdult", System.DBNull.Value);
+                } else {
+                    command.Parameters.AddWithValue("IsAdult", isAdult);
+                }
+                
+                if(runtime == null) {
+                    command.Parameters.AddWithValue("Runtime", System.DBNull.Value);
+                } else {
+                    command.Parameters.AddWithValue("Runtime", runtime);
+                }
+                
+                if(year == null) {
+                    command.Parameters.AddWithValue("ReleaseYear", System.DBNull.Value);
+                } else {
+                    command.Parameters.AddWithValue("ReleaseYear", year);
+                }
+                
+                if(studio == null) {
+                    command.Parameters.AddWithValue("StudioID", System.DBNull.Value);
+                } else {
+                    command.Parameters.AddWithValue("StudioID", studio);
+                }
+                
+                if(genre == null) {
+                    command.Parameters.AddWithValue("GenreID", System.DBNull.Value);
+                } else {
+                    command.Parameters.AddWithValue("GenreID", genre);
+                }
+
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.ExecuteNonQuery();
+            }
+        }
 
 
 
